@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Funcionário - EZmalteria</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <!--EZmalteria CSS-->
+	<link href="../../css/styletest.css" rel="stylesheet" type="text/css" />
+	<!--Resumed CSS-->
+	<link href="../../css/bootstrap_style.css" rel="stylesheet" type="text/css" />
+    <!-- FontAwesome 4.3.0 -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons 2.0.0 -->
+    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />    
+	<!-- ICON -->
+	<link rel="shortcut icon" href="../../img/favicon.ico">
+
+	</head>
+  <body class="skin-blue">
+    <div class="wrapper">
+      
+      <header class="main-header">
+        <!-- Logo -->
+        <a href="../../index.html" class="logo"><img src="../../img/EZmalteria_logo-2.png"/></a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+		  <table>
+		    <tr>
+		      <td width="15%">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                  <span class="sr-only">Toggle navigation</span>
+                </a>
+		      </td>
+		      <td id="logout" width="84%">
+		        <a href="../../login.html">Logout</a>
+		      </td>
+		    </tr>
+		  </table>
+        </nav>
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar user panel -->
+          <div class="user-panel" style="height:60px !important">
+            <div class="pull-left image">
+              <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+            </div>
+            <div class="pull-left info">
+              <p>Alexander Pierce</p>
+			  <br/>
+            </div>
+          </div>
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu">
+            <li class="treeview">
+              <a href="../../index.html">
+                <i class="fa fa-home"></i> <span>Painel principal</span>
+              </a>
+            </li>
+			<li class="treeview active">
+              <a href="#">
+                <i class="fa fa-plus"></i>
+                <span>Cadastro</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+				<li><a href="usuario.html"><i class="fa fa-user"></i> Usuário</a></li>
+				<li><a href="cliente.html"><i class="fa fa-users"></i> Cliente</a></li>
+				<li><a href="#top" class="current"><i class="fa fa-user-plus"></i> Funcionário</a></li>
+				<li><a href="estoque.html"><i class="fa fa-dropbox"></i> Estoque</a></li>
+				<li><a href="servico.html"><i class="fa fa-briefcase"></i> Serviço</a></li>
+			  </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-pie-chart"></i> <span>Relatório</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+				<li><a href="#"><i class="fa fa-money"></i> Financeiro</a></li>
+				<li><a href="#"><i class="fa fa-users"></i> Cliente</a></li>
+				<li><a href="#"><i class="fa fa-user-plus"></i> Funcionário</a></li>
+				<li><a href="#"><i class="fa fa-dropbox"></i> Estoque</a></li>
+				<li><a href="#"><i class="fa fa-briefcase"></i> Serviço</a></li>
+			  </ul>
+            </li>
+            <li class="treeview">
+              <a href="agendamento.html">
+                <i class="fa fa-calendar"></i> <span>Agendamento</span>
+              </a>
+            </li>
+			<li class="treeview">
+              <a href="#">
+                <i class="fa fa-search"></i>
+                <span>Pesquisa</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+				<li><a href="#"><i class="fa fa-user"></i> Usuário</a></li>
+				<li><a href="#"><i class="fa fa-users"></i> Cliente</a></li>
+				<li><a href="#"><i class="fa fa-user-plus"></i> Funcionário</a></li>
+				<li><a href="#"><i class="fa fa-dropbox"></i> Estoque</a></li>
+				<li><a href="#"><i class="fa fa-briefcase"></i> Serviço</a></li>
+			  </ul>
+            </li>
+          </ul>
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Cadastro de Funcionário
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="../../index.html"><i class="fa fa-home"></i> Home</a></li>
+            <li class="active">Cadastro de Funcionário</li>
+          </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+              <!-- general form elements -->
+              <div class="box box-primary">
+                <!-- form start -->
+                <form role="form">
+                  <div class="box-body">
+                    <h3 class="box-title">Dados Pessoais</h3>
+					<div class="form-group">
+					  <table>
+					    <tr>
+						<table><tr>
+						  <td id="tdone">
+						    <label for="inputNome" placeholder="Nome">Nome</label>
+                            <input type="text" class="form-control" id="inputNome" required pattern="[^0-9]+" title="Somente letras nesse campo." required>
+						  </td>
+						  <td id="tdone">
+                            <label for="inputSobrenome" placeholder="Sobrenome">Sobrenome</label>
+                            <input type="text" class="form-control" id="inputSobrenome" required pattern="[^0-9]+" title="Somente letras nesse campo." required>
+						  </td>
+						  </tr></table>
+						</tr>
+						<tr>
+						  <table><tr>
+						  <td id="tdtwo">
+						    <label for="inputEstadoCivil">Estado civil</label>
+							  <select class="form-control">
+							    <option>Solteiro/a</option>
+							    <option>Casado/a</option>
+							    <option>Viúvo/a</option>
+							    <option>Divorciado/a</option>
+							    <option>Namorando</option>
+							    <option>Outro</option>
+							  </select>
+						  </td>
+						  <td id="tdtwo">
+						    <label for="inputRG">RG</label>
+							<input type="text" class="form-control" id="inputRG" required><!-- required pattern=".{9}" title="Digite apenas os 9 dígitos, sem pontos."-->
+						  </td>
+						  <td id="tdtwo">
+							<label for="inputCPF">CPF</label>
+							<input type="text" class="form-control" id="inputCPF" required><!--required pattern=".{11}" title="Digite apenas os 11 números."-->
+						  </td>
+						  </tr></table>
+						</tr>
+						<tr>
+						<table><tr>
+						  <td id="tdone">
+						    <label for="inputNascimento">Data de nascimento</label>
+							<input type="date" class="form-control" required/>
+						  </td>
+						  <td id="tdone">
+                            <label for="inputTel">Telefone</label>
+							<input type="text" class="form-control" id="inputTel"required><!-- required pattern=".{8,9}" title="Digite apenas os 8 ou 9 números."-->
+						  </td>
+						  </tr></table>
+						</tr>
+					  </table>
+                    </div>
+					
+                    <h3 class="box-title">Endereço</h3>
+					<div class="form-group">
+					<table>
+					    <tr>
+						<table><tr>
+						  <td width="75%" id="pad">
+							<label for="inputLogradouro">Logradouro</label>
+							<input type="text" class="form-control" id="inputLogradouro" required>
+						  </td>
+						  <td width="25%" id="pad">
+							<label for="inputNumero">Número</label>
+							<input type="number" class="form-control" id="inputNumero" required pattern=".{1,6}" title="Digite apenas o número." required>
+						  </td>
+						  </tr></table>
+						</tr>
+						<tr>
+						<table><tr>
+						  <td width="45%" id="pad">
+							<label for="inputBairro">Bairro</label>
+							<input type="text" class="form-control" id="inputBairro" required>
+						  </td>
+						  <td width="45%" id="pad">
+							<label for="inputCidade">Cidade</label>
+							<input type="text" class="form-control" id="inputCidade" required pattern="[^0-9]+" title="Somente letras nesse campo." required>
+						  </td>
+						  <td width="10%" id="pad">
+							<label for="inputUF">UF</label>
+							<!--<input type="text" class="form-control" id="inputUF">-->
+							<select class="form-control">
+								<option>SP</option>
+								<option>AC</option>
+								<option>AL</option>
+								<option>AP</option>
+								<option>AM</option>
+								<option>BA</option>
+								<option>CE</option>
+								<option>DF</option>
+								<option>ES</option>
+								<option>GO</option>
+								<option>MA</option>
+								<option>MT</option>
+								<option>MS</option>
+								<option>MG</option>
+								<option>PA</option>
+								<option>PB</option>
+								<option>PR</option>
+								<option>PE</option>
+								<option>PI</option>
+								<option>RJ</option>
+								<option>RN</option>
+								<option>RS</option>
+								<option>RO</option>
+								<option>RR</option>
+								<option>SC</option>
+								<option>SE</option>
+								<option>TO</option>
+							</select>
+						  </td>
+						  </tr></table>
+						</tr>
+						<tr>
+						  <table><tr>
+						    <td width="30%" id="pad">
+							  <label for="inputCEP">CEP</label>
+							  <input type="text" class="form-control" id="inputCEP" required><!-- required pattern=".{8}" title="Digite apenas os 8 números."-->
+							</td>
+						    <td width="70%" id="pad">
+							  <label for="inputComplemento">Complemento</label>
+							  <input type="text" class="form-control" id="inputComplemento">
+							</td>
+						  </tr></table>
+						</tr>
+					  </table>
+                    </div>
+					
+					<h3 class="box-title">Dados Trabalhistas</h3>
+					<div class="form-group">
+					  <table>
+					    <tr>
+						<table><tr>
+						  <td id="tdtwo">
+							<label for="inputTipo">Tipo de Registro</label>
+							<select class="form-control">
+							  <option>Registrado/CLT</option>
+							  <option>Freelancer</option>
+							</select>
+						  </td>
+						  <td id="tdtwo">
+							<label for="inputCTPS">Carteira de Trabalho nº</label>
+							<input type="number" class="form-control" id="inputCTPS" required pattern=".{8,12}" title="Digite apenas os números e a série." required>
+						  </td>
+						  <td id="tdtwo">
+							<label for="inputDesde">Funcionário desde</label>
+							<input type="date" class="form-control" id="inputDesde" required>
+						  </td>
+						  </tr></table>
+						</tr>
+					  </table>
+                    </div>
+					<div class="box-footer">
+                    <input type="submit" class="btn btn-primary" value="Salvar"/>
+                  </div>
+                </form>
+              </div><!-- /.box -->
+                  </form>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!--/.col (right) -->
+          </div>   <!-- /.row -->
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+      <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+          <b>Version</b> 1.0
+        </div>
+        <strong>Copyright &copy; 2015 <a>EZmalteria</a>.</strong> All rights reserved.
+      </footer>
+    </div><!-- ./wrapper -->
+
+    <!-- jQuery 2.1.3 -->
+    <script src="../../plugins/jQuery/jQuery-2.1.3.min.js"></script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src='../../plugins/fastclick/fastclick.min.js'></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/app.min.js" type="text/javascript"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../../dist/js/demo.js" type="text/javascript"></script>
+	
+	<!--Máscaras-->
+	<script type="text/javascript" src="../../plugins/jquery.maskedinput.js"/></script>
+	<script type="text/javascript">
+	jQuery(function($){
+		$("#inputRG").mask("99.999.999-*");
+		$("#inputCPF").mask("999.999.999-99");
+		$("#inputTel").mask("(99) 99999-9999");
+		$("#inputCEP").mask("99999-999");
+	});
+	</script>
+  </body>
+</html>

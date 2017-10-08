@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>EZmalteria - Login</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+	<!--EZmalteria CSS-->
+	<link href="css/styletest.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body id="loginbody">
+    <div class="format">
+      <div class="logindiv">
+        <!-- Logo -->
+        <img src="img/EZmalteria_logo-2.png"/>
+		<br/>
+		<br/>
+        <form name="loginform" action="index.html" onsubmit="return checkValues()" method="post">
+		<div class="form-group">
+		  <div>
+		    <label for="inputUser" placeholder="User">Usuário</label>
+            <input type="text" class="form-control" id="inputUser" required>
+		  </div>
+		  <div>
+            <label for="inputPassword" placeholder="Password">Senha</label>
+            <input type="password" class="form-control" id="inputPassword" required>
+		  </div>
+		  
+        </div>
+		<br/>
+        <input type="submit" class="loginbtn" value="Login" />
+		</form>
+	  </div>
+	</div>
+    <footer id="loginfooter">
+      <div class="loginfooter">
+        <b>Version</b> 1.0
+      </div>
+      <strong>Copyright &copy; 2015 <a>EZmalteria</a>.</strong> All rights reserved.
+    </footer>
+  </body>
+</html>
