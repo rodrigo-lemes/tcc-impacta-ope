@@ -3,7 +3,6 @@ package com.ezmalteria.controller;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -14,15 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-//import com.ezmalteria.crud.CarRegisterCrud;
+import com.ezmalteria.dao.FuncionarioDao;
 import com.ezmalteria.domain.AgendamentoTO;
 import com.ezmalteria.domain.ClienteTO;
 import com.ezmalteria.domain.DespesasTO;
@@ -34,14 +29,15 @@ import com.ezsystem.dataBaseControl.JdbcManager;
 import com.ezsystem.utils.ConversorDatas;
 import com.ezsystem.utils.Logger;
 import com.ezsystem.utils.javaMailUtil;
-import com.google.gson.Gson;
 
 @Controller
 @EnableAutoConfiguration
-@EnableJpaRepositories("com.rodrigo.soukef.microservice.crud")
-@EntityScan("com.rodrigo.soukef.microservice.domain")
-public class CarRegistrationMicroServiceController {
+@EnableJpaRepositories("com.ezmalteria.dao")
+@EntityScan("com.ezmalteria.domain")
+public class EzSystemController {
 
+	@Autowired
+	FuncionarioDao fdao;
 
 	javaMailUtil JMailTool;
 
@@ -154,6 +150,13 @@ public class CarRegistrationMicroServiceController {
 			@ModelAttribute("command") AgendamentoTO agendamento) {
 
 		JdbcManager dataBaseTools = new JdbcManager();
+		
+		//debug
+		boolean debug = false;
+		
+		if(debug) {
+			fdao.findAll();
+		}
 
 		// carregar dados de usuario na entidade
 
@@ -2781,7 +2784,7 @@ public class CarRegistrationMicroServiceController {
 	}
 
 	public static void main(String[] args) throws Exception {
-		SpringApplication.run(CarRegistrationMicroServiceController.class, args);
+		SpringApplication.run(EzSystemController.class, args);
 	}
 	
 }

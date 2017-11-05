@@ -1,118 +1,92 @@
 package com.ezmalteria.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+@Entity
+@Table(name="funcionario")
 public class FuncionarioTO {
-//ok - testado falta jsp com campos adicionais
-	private String idFuncionario = "";
-	private String nome = "";
-	private String estadoCivil = "";
-	private String rg = "";
-	private String cpf = "";
-	private String nascimento = "";
-	private String telRes = "";
-	private String telCel = "";
-	private String logradouro = "";
-	private String numero = "";
-	private String bairro = "";
-	private String cidade = "";
-	private String uf = "";
-	private String cep = "";
-	private String complemento = "";
-	private String tipoFuncionario = "";
-	private String carteiraTrabalho = "";
-	private String dataInclusao = "";
-	private String dataAlteracao = "";
-	private String dataExclusao = "";
-	private String sexo = "";
-	private String codFunc = "";
-	private String estado = "";
-	private String salarioFixo = "";
-	private String email = "";
-	private String senha = "";
-	private String perfil = "";
-	private String dataPesquisaInicio = "";
-	private String dataPesquisaFim = "";
+
+	@Id
+	@Column(name="idfuncionario")
+	private String idFuncionario;
+	@Column(name="nome")
+	private String nome;
+	@Column(name="estadocivil")
+	private String estadoCivil;
+	@Column(name="rg")
+	private String rg;
+	@Column(name="cpf")
+	private String cpf;
+	@Column(name="datanascimento")
+	private String nascimento;
+	@Column(name="telefone")
+	private String telRes;
+	@Column(name="celular")
+	private String telCel;
+	@Column(name="logradouro")
+	private String logradouro;
+	@Column(name="numero")
+	private String numero;
+	@Column(name="bairro")
+	private String bairro;
+	@Column(name="cidade")
+	private String cidade;
+	@Column(name="uf")
+	private String uf;
+	@Column(name="cep")
+	private String cep;
+	@Column(name="complemento")
+	private String complemento;
+	@Column(name="tipofuncionario")
+	private String tipoFuncionario;
+	@Column(name="carteiratrabalho")
+	private String carteiraTrabalho;
+	@Column(name="datainclusao")
+	private String dataInclusao;
+	@Column(name="dataalteracao")
+	private String dataAlteracao;
+	@Column(name="dataexclusao")
+	private String dataExclusao;
+	@Column(name="sexo")
+	private String sexo;
+	@Column(name="codigofuncionario")
+	private String codFunc;
+	@Column(name="statusfuncionario")
+	private String estado;
+	@Column(name="salario")
+	private String salarioFixo;
+	@Column(name="email")
+	private String email;
+	@Column(name="senha")
+	private String senha;
+	@Column(name="perfil")
+	private String perfil;
 	
+	@Transient
+	private String dataPesquisaInicio;
 	
-	public void setNome(String nome) {
-		this.nome = nome;
+	@Transient
+	private String dataPesquisaFim;
+
+	public String getIdFuncionario() {
+		return idFuncionario;
+	}
+
+	public void setIdFuncionario(String idFuncionario) {
+		this.idFuncionario = idFuncionario;
 	}
 
 	public String getNome() {
 		return nome;
 	}
 
-	// ===========================
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	// ============================
-
-	public void setRg(String rg) {
-		this.rg = rg;
-	}
-
-	public String getRg() {
-		return rg;
-	}
-
-	public void setNascimento(String nascimento) {
-		this.nascimento = nascimento;
-	}
-
-	public String getNascimento() {
-		return nascimento;
-	}
-
-	public String getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
-	}
-
-	public String getCodFunc() {
-		return codFunc;
-	}
-
-	public void setCodFunc(String codFunc) {
-		this.codFunc = codFunc;
-	}
-
-	public String getEstado() {
-
-		System.out.println("This status will be returned: "+ estado);
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		
-		if(estado.equals("1")){
-			this.estado="Ativo";
-		}else if(estado.equals("0")){
-			this.estado="Inativo";
-		}else if(estado.toLowerCase().equals("ativo")){
-			this.estado="1";
-		}else {this.estado="0";}
-		
-		System.out.println("Setted Status: "+this.estado);
-	}
-
-	public String getSalarioFixo() {
-		return salarioFixo;
-	}
-
-	public void setSalarioFixo(String salarioFixo) {
-		this.salarioFixo = salarioFixo;
-	}
-
-	
 
 	public String getEstadoCivil() {
 		return estadoCivil;
@@ -122,7 +96,45 @@ public class FuncionarioTO {
 		this.estadoCivil = estadoCivil;
 	}
 
-	
+	public String getRg() {
+		return rg;
+	}
+
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getNascimento() {
+		return nascimento;
+	}
+
+	public void setNascimento(String nascimento) {
+		this.nascimento = nascimento;
+	}
+
+	public String getTelRes() {
+		return telRes;
+	}
+
+	public void setTelRes(String telRes) {
+		this.telRes = telRes;
+	}
+
+	public String getTelCel() {
+		return telCel;
+	}
+
+	public void setTelCel(String telCel) {
+		this.telCel = telCel;
+	}
 
 	public String getLogradouro() {
 		return logradouro;
@@ -196,14 +208,20 @@ public class FuncionarioTO {
 		this.carteiraTrabalho = carteiraTrabalho;
 	}
 
-	
-
 	public String getDataInclusao() {
 		return dataInclusao;
 	}
 
 	public void setDataInclusao(String dataInclusao) {
 		this.dataInclusao = dataInclusao;
+	}
+
+	public String getDataAlteracao() {
+		return dataAlteracao;
+	}
+
+	public void setDataAlteracao(String dataAlteracao) {
+		this.dataAlteracao = dataAlteracao;
 	}
 
 	public String getDataExclusao() {
@@ -214,7 +232,29 @@ public class FuncionarioTO {
 		this.dataExclusao = dataExclusao;
 	}
 
-	
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	public String getCodFunc() {
+		return codFunc;
+	}
+
+	public void setCodFunc(String codFunc) {
+		this.codFunc = codFunc;
+	}
+
+	public String getSalarioFixo() {
+		return salarioFixo;
+	}
+
+	public void setSalarioFixo(String salarioFixo) {
+		this.salarioFixo = salarioFixo;
+	}
 
 	public String getEmail() {
 		return email;
@@ -240,38 +280,6 @@ public class FuncionarioTO {
 		this.perfil = perfil;
 	}
 
-	public String getIdFuncionario() {
-		return idFuncionario;
-	}
-
-	public void setIdFuncionario(String idFuncionario) {
-		this.idFuncionario = idFuncionario;
-	}
-
-	public String getDataAlteracao() {
-		return dataAlteracao;
-	}
-
-	public void setDataAlteracao(String dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
-	}
-
-	public String getTelRes() {
-		return telRes;
-	}
-
-	public void setTelRes(String telRes) {
-		this.telRes = telRes;
-	}
-
-	public String getTelCel() {
-		return telCel;
-	}
-
-	public void setTelCel(String telCel) {
-		this.telCel = telCel;
-	}
-
 	public String getDataPesquisaInicio() {
 		return dataPesquisaInicio;
 	}
@@ -286,6 +294,25 @@ public class FuncionarioTO {
 
 	public void setDataPesquisaFim(String dataPesquisaFim) {
 		this.dataPesquisaFim = dataPesquisaFim;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+
+		if (estado.equals("1")) {
+			this.estado = "Ativo";
+		} else if (estado.equals("0")) {
+			this.estado = "Inativo";
+		} else if (estado.toLowerCase().equals("ativo")) {
+			this.estado = "1";
+		} else {
+			this.estado = "0";
+		}
+
+		System.out.println("Setted Status: " + this.estado);
 	}
 
 }
