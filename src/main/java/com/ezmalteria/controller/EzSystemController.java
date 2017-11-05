@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,14 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ezmalteria.dao.FuncionarioDao;
 import com.ezmalteria.domain.AgendamentoTO;
 import com.ezmalteria.domain.ClienteTO;
 import com.ezmalteria.domain.DespesasTO;
 import com.ezmalteria.domain.FuncionarioTO;
 import com.ezmalteria.domain.LancamentoServicoTO;
 import com.ezmalteria.domain.ProdutoTO;
-import com.ezmalteria.domain.UsuarioTO;
+import com.ezmalteria.facade.FuncionarioFacade;
 import com.ezsystem.dataBaseControl.JdbcManager;
 import com.ezsystem.utils.ConversorDatas;
 import com.ezsystem.utils.Logger;
@@ -34,15 +34,17 @@ import com.ezsystem.utils.javaMailUtil;
 @EnableAutoConfiguration
 @EnableJpaRepositories("com.ezmalteria.dao")
 @EntityScan("com.ezmalteria.domain")
+@ComponentScan(basePackageClasses=com.ezmalteria.facade.FuncionarioFacade.class)
 public class EzSystemController {
-
+	
 	@Autowired
-	FuncionarioDao fdao;
+	FuncionarioFacade funcionarioFacade;
+	
+	private FuncionarioTO funcionarioLoaded;
 
 	javaMailUtil JMailTool;
 
 	Logger log = new Logger();
-	ArrayList<String> resultadosDadosUsuario = new ArrayList<String>();
 	String codigoClienteSendoEditado = "";
 	String cpfCadastradoEmUsuarioSendoEditado = "";
 	String codigoEmProdutoSendoEditado = "";
@@ -53,8 +55,6 @@ public class EzSystemController {
 	String insertResult = "";
 	/* inicio processo de login */
 
-	// dados do usuario
-	ResultSet dadosUsuario;
 
 	// Erro ao tentar acessar pg sem estar logado
 	String loginCheckedContext = "erroLogin";
@@ -63,9 +63,7 @@ public class EzSystemController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView login() {
 		loginCheckedContext = "erroLogin";
-		dadosUsuario = null;
-		resultadosDadosUsuario = null;
-		return new ModelAndView("login", "command", new UsuarioTO());
+		return new ModelAndView("login", "command", new FuncionarioTO());
 	}
 
 	// pagina inicial que nao checa o login
@@ -146,40 +144,18 @@ public class EzSystemController {
 
 	// Pagina inicial que checa login
 	@RequestMapping(value = "/home", method = RequestMethod.POST)
-	public ModelAndView inicio(UsuarioTO usuario,
+	public ModelAndView inicio(final FuncionarioTO usuario,
 			@ModelAttribute("command") AgendamentoTO agendamento) {
 
 		JdbcManager dataBaseTools = new JdbcManager();
 		
-		//debug
-		boolean debug = false;
-		
-		if(debug) {
-			fdao.findAll();
-		}
-
+		funcionarioLoaded = funcionarioFacade.getFuncionarioByCredentials(usuario);
 		// carregar dados de usuario na entidade
 
 		ModelAndView model = new ModelAndView(loginCheckedContext);
 
-		dadosUsuario = dataBaseTools
-				.selectJdbc("select * from ezmalteria.funcionario WHERE email = \'"
-						+ usuario.getUsuario() + "\'");
-
-		resultadosDadosUsuario = new ArrayList<String>();
-		try {
-			while (dadosUsuario.next()) {
-				resultadosDadosUsuario.add(dadosUsuario
-						.getString("idFuncionario"));
-				resultadosDadosUsuario.add(dadosUsuario.getString("email"));
-				resultadosDadosUsuario.add(dadosUsuario.getString("senha"));
-				resultadosDadosUsuario.add(dadosUsuario.getString("perfil"));
-				resultadosDadosUsuario.add(dadosUsuario
-						.getString("statusFuncionario"));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-
+		if(null!= funcionarioLoaded) {
+			loginCheckedContext = "LOGADO";
 		}
 
 		// lista produtos acabando
@@ -241,31 +217,15 @@ public class EzSystemController {
 		}
 		try {
 
-			System.out
-					.println("Status func - " + resultadosDadosUsuario.get(4));
-			System.out
-					.println("Perfil func - " + resultadosDadosUsuario.get(3));
+			if (!funcionarioLoaded.getIdFuncionario().isEmpty() && null != funcionarioLoaded.getIdFuncionario()) {
 
-			if (usuario.getUsuario().equals(resultadosDadosUsuario.get(1))
-					&& usuario.getSenha().equals(resultadosDadosUsuario.get(2))) {
+				log.gravarLog("UsuarioExiste: " + usuario.getEmail());
 
-				log.gravarLog("UsuarioExiste: " + usuario.getUsuario());
-				System.out.println("UsuarioExiste: " + usuario.getUsuario());
+				if (funcionarioLoaded.getEstado().equals("1")) {
 
-				// neste cenario, como os dados de usuario bateram, ele sera
-				// encaminhado para a jsp Index se
-				// resultadosDadosUsuario.get(4).equals("1")
-				if (resultadosDadosUsuario.get(4).equals("1")) {
+					model = new ModelAndView("index");
 
-					System.out.println("Status func - "
-							+ resultadosDadosUsuario.get(4));
-					System.out.println("Perfil func - "
-							+ resultadosDadosUsuario.get(3));
-					loginCheckedContext = "index";
-					model = new ModelAndView(loginCheckedContext);
-
-					model.addObject("listaProdutosAcabando",
-							listaProdutosAcabando);
+					model.addObject("listaProdutosAcabando",listaProdutosAcabando);
 					model.addObject("listaAgendamentos", listaAgendamentos);
 
 					return model;
@@ -273,7 +233,7 @@ public class EzSystemController {
 					return new ModelAndView("acessoRestrito");
 				}
 			} else {
-				log.gravarLog("Falha de Login: " + usuario.getUsuario());
+				log.gravarLog("Falha de Login: " + usuario.getEmail());
 
 			}
 		} catch (java.lang.IndexOutOfBoundsException e) {
@@ -289,8 +249,8 @@ public class EzSystemController {
 	public ModelAndView agendamento() {
 
 		if (!loginCheckedContext.equals("erroLogin")) {
-			if (resultadosDadosUsuario.get(3).equals("adm")
-					&& resultadosDadosUsuario.get(4).equals("1")) {
+			if (funcionarioLoaded.getPerfil().equalsIgnoreCase("adm")
+					&& funcionarioLoaded.getEstado().equals("1")) {
 
 				ModelAndView model = new ModelAndView("gerenciarAgendamentos",
 						"command", new AgendamentoTO());
@@ -428,8 +388,8 @@ public class EzSystemController {
 		}
 
 		// ======
-		if (resultadosDadosUsuario.get(3).equals("adm")
-				&& resultadosDadosUsuario.get(4).equals("1")) {
+		if (funcionarioLoaded.getPerfil().equalsIgnoreCase("adm")
+				&& funcionarioLoaded.getEstado().equals("1")) {
 			return "formularioDeEdicaoAgendamento";
 		} else {
 			return "acessoRestrito";
@@ -524,8 +484,8 @@ public class EzSystemController {
 	public ModelAndView clientes() {
 
 		if (!loginCheckedContext.equals("erroLogin")) {
-			if (resultadosDadosUsuario.get(3).equals("adm")
-					&& resultadosDadosUsuario.get(4).equals("1")) {
+			if (funcionarioLoaded.getPerfil().equalsIgnoreCase("adm")
+					&& funcionarioLoaded.getEstado().equals("1")) {
 
 				return new ModelAndView("gerenciarClientes", "command",
 						new ClienteTO());
@@ -634,8 +594,8 @@ public class EzSystemController {
 		model.addAttribute("command");
 
 		if (!loginCheckedContext.equals("erroLogin")) {
-			if (resultadosDadosUsuario.get(3).equals("adm")
-					&& resultadosDadosUsuario.get(4).equals("1")) {
+			if (funcionarioLoaded.getPerfil().equalsIgnoreCase("adm")
+					&& funcionarioLoaded.getEstado().equals("1")) {
 
 				return new ModelAndView("editarDeletarCliente", "command",
 						new ClienteTO());
@@ -692,8 +652,8 @@ public class EzSystemController {
 		model.addAttribute("telRes", cliente.getTelRes());
 		model.addAttribute("telCel", cliente.getTelCel());
 		model.addAttribute("cpf", cliente.getCpf());
-		if (resultadosDadosUsuario.get(3).equals("adm")
-				&& resultadosDadosUsuario.get(4).equals("1")) {
+		if (funcionarioLoaded.getPerfil().equalsIgnoreCase("adm")
+				&& funcionarioLoaded.getEstado().equals("1")) {
 
 			return "formularioDeEdicaoCliente";
 		} else {
@@ -850,8 +810,8 @@ public class EzSystemController {
 		}
 
 		if (!loginCheckedContext.equals("erroLogin")) {
-			if (resultadosDadosUsuario.get(3).equals("adm")
-					&& resultadosDadosUsuario.get(4).equals("1")) {
+			if (funcionarioLoaded.getPerfil().equalsIgnoreCase("adm")
+					&& funcionarioLoaded.getEstado().equals("1")) {
 
 				return model;
 			} else {
@@ -870,8 +830,8 @@ public class EzSystemController {
 	public ModelAndView funcionario() {
 
 		if (!loginCheckedContext.equals("erroLogin")) {
-			if (resultadosDadosUsuario.get(3).equals("adm")
-					&& resultadosDadosUsuario.get(4).equals("1")) {
+			if (funcionarioLoaded.getPerfil().equalsIgnoreCase("adm")
+					&& funcionarioLoaded.getEstado().equals("1")) {
 
 				return new ModelAndView("gerenciarFuncionarios", "command",
 						new FuncionarioTO());
@@ -990,8 +950,8 @@ public class EzSystemController {
 		model.addAttribute("command");
 
 		if (!loginCheckedContext.equals("erroLogin")) {
-			if (resultadosDadosUsuario.get(3).equals("adm")
-					&& resultadosDadosUsuario.get(4).equals("1")) {
+			if (funcionarioLoaded.getPerfil().equalsIgnoreCase("adm")
+					&& funcionarioLoaded.getEstado().equals("1")) {
 
 				return new ModelAndView("editarDeletarFuncionario", "command",
 						new FuncionarioTO());
@@ -1330,8 +1290,8 @@ public class EzSystemController {
 		}
 
 		if (!loginCheckedContext.equals("erroLogin")) {
-			if (resultadosDadosUsuario.get(3).equals("adm")
-					&& resultadosDadosUsuario.get(4).equals("1")) {
+			if (funcionarioLoaded.getPerfil().equalsIgnoreCase("adm")
+					&& funcionarioLoaded.getEstado().equals("1")) {
 
 				return model;
 			} else {
@@ -1350,8 +1310,8 @@ public class EzSystemController {
 	public ModelAndView despesas() {
 
 		if (!loginCheckedContext.equals("erroLogin")) {
-			if (resultadosDadosUsuario.get(3).equals("adm")
-					&& resultadosDadosUsuario.get(4).equals("1")) {
+			if (funcionarioLoaded.getPerfil().equalsIgnoreCase("adm")
+					&& funcionarioLoaded.getEstado().equals("1")) {
 				return new ModelAndView("gerenciarDespesas", "command",
 						new DespesasTO());
 			} else {
@@ -1424,8 +1384,8 @@ public class EzSystemController {
 	public ModelAndView editarDeletarDespesa(Model model) {
 
 		model.addAttribute("command");
-		if (resultadosDadosUsuario.get(3).equals("adm")
-				&& resultadosDadosUsuario.get(4).equals("1")) {
+		if (funcionarioLoaded.getPerfil().equalsIgnoreCase("adm")
+				&& funcionarioLoaded.getEstado().equals("1")) {
 
 			if (!loginCheckedContext.equals("erroLogin")) {
 				return new ModelAndView("editarDeletarDespesa", "command",
@@ -1621,8 +1581,8 @@ public class EzSystemController {
 		}
 
 		if (!loginCheckedContext.equals("erroLogin")) {
-			if (resultadosDadosUsuario.get(3).equals("adm")
-					&& resultadosDadosUsuario.get(4).equals("1")) {
+			if (funcionarioLoaded.getPerfil().equalsIgnoreCase("adm")
+					&& funcionarioLoaded.getEstado().equals("1")) {
 
 				return model;
 			} else {
@@ -1640,10 +1600,7 @@ public class EzSystemController {
 	@RequestMapping(value = "/gerenciarServicosRealizados", method = RequestMethod.GET)
 	public ModelAndView gerenciarServicosRealizados() {
 		if (!loginCheckedContext.equals("erroLogin")) {
-			if ((resultadosDadosUsuario.get(3).equals("adm")
-					|| resultadosDadosUsuario.get(3).equals("ger") || resultadosDadosUsuario
-					.get(3).equals("func"))
-					&& resultadosDadosUsuario.get(4).equals("1")) {
+			if (funcionarioLoaded.getEstado().equals("1")) {
 
 				JdbcManager dataBaseTools = new JdbcManager();
 
@@ -1874,8 +1831,8 @@ public class EzSystemController {
 		model.addAttribute("command");
 
 		if (!loginCheckedContext.equals("erroLogin")) {
-			if (resultadosDadosUsuario.get(3).equals("adm")
-					&& resultadosDadosUsuario.get(4).equals("1")) {
+			if (funcionarioLoaded.getPerfil().equalsIgnoreCase("adm")
+					&& funcionarioLoaded.getEstado().equals("1")) {
 
 				return new ModelAndView("editarDeletarServicoRealizado",
 						"command", new LancamentoServicoTO());
@@ -2292,8 +2249,8 @@ public class EzSystemController {
 		}
 
 		if (!loginCheckedContext.equals("erroLogin")) {
-			if (resultadosDadosUsuario.get(3).equals("adm")
-					&& resultadosDadosUsuario.get(4).equals("1")) {
+			if (funcionarioLoaded.getPerfil().equalsIgnoreCase("adm")
+					&& funcionarioLoaded.getEstado().equals("1")) {
 
 				return model;
 			} else {
@@ -2313,9 +2270,7 @@ public class EzSystemController {
 	public ModelAndView produto() {
 
 		if (!loginCheckedContext.equals("erroLogin")) {
-			if ((resultadosDadosUsuario.get(3).equals("adm") || resultadosDadosUsuario
-					.get(3).equals("ger"))
-					&& resultadosDadosUsuario.get(4).equals("1")) {
+			if (funcionarioLoaded.getEstado().equals("1")) {
 
 				return new ModelAndView("gerenciarProdutos", "command",
 						new ProdutoTO());
@@ -2385,9 +2340,7 @@ public class EzSystemController {
 		model.addAttribute("command");
 
 		if (!loginCheckedContext.equals("erroLogin")) {
-			if ((resultadosDadosUsuario.get(3).equals("adm") || resultadosDadosUsuario
-					.get(3).equals("ger"))
-					&& resultadosDadosUsuario.get(4).equals("1")) {
+			if (funcionarioLoaded.getEstado().equals("1")) {
 
 				return new ModelAndView("editarDeletarProduto", "command",
 						new ProdutoTO());
@@ -2569,9 +2522,7 @@ public class EzSystemController {
 		}
 
 		if (!loginCheckedContext.equals("erroLogin")) {
-			if ((resultadosDadosUsuario.get(3).equals("adm") || resultadosDadosUsuario
-					.get(3).equals("ger"))
-					&& resultadosDadosUsuario.get(4).equals("1")) {
+			if (funcionarioLoaded.getEstado().equals("1")) {
 
 				return model;
 			} else {
@@ -2588,7 +2539,7 @@ public class EzSystemController {
 	public ModelAndView exit() {
 		loginCheckedContext = "erroLogin";
 		return new ModelAndView("login"/* isto chama login.jsp */, "command",
-				new UsuarioTO());
+				new FuncionarioTO());
 	}
 
 	@RequestMapping(value = "/erroDeBusca")
@@ -2740,10 +2691,10 @@ public class EzSystemController {
 
 		modelo.addAttribute("listaServicosRealizados", listaServicosRealizados);
 
-		if (resultadosDadosUsuario == null || resultadosDadosUsuario.equals(null)) {
+		if (null == funcionarioLoaded) {
 			return "erroLogin";
 		} else {
-			if (resultadosDadosUsuario.get(3).equals("adm")) {
+			if (funcionarioLoaded.getPerfil().equalsIgnoreCase("adm")) {
 				return "/relatorioFinanceiro";
 			} else {
 				return "acessoRestrito";
@@ -2756,11 +2707,11 @@ public class EzSystemController {
 	public String baterPonto() {
 
 		JdbcManager dataBaseTools = new JdbcManager();
-
+		
 		ResultSet resultado = null;
 		resultado = dataBaseTools
 				.selectJdbc("SELECT * FROM ezmalteria.folhaDePonto WHERE dataInclusao = CURRENT_DATE() AND idFuncionario = "
-						+ resultadosDadosUsuario.get(0));
+						+ funcionarioLoaded.getIdFuncionario());
 		String dado = "";
 
 		try {
@@ -2775,7 +2726,7 @@ public class EzSystemController {
 		if (dado.isEmpty()) {
 			dataBaseTools
 					.insertJdbc("INSERT INTO ezmalteria.folhaDePonto (dataInclusao, idFuncionario) VALUES (CURRENT_DATE(),'"
-							+ resultadosDadosUsuario.get(0) + "')");
+							+ funcionarioLoaded.getIdFuncionario() + "')");
 		} else {
 			return "erroPonto";
 		}

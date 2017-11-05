@@ -19,8 +19,8 @@
         <form:form name="loginform" method="POST" action="home" >
 		<div class="form-group">
 		  <div>
-		    <form:label for="inputUser" path="usuario">Usuário</form:label>
-            <form:input class="form-control" id="inputUser" path="usuario" required="required"/>
+		    <form:label for="inputUser" path="email">Usuário</form:label>
+            <form:input class="form-control" id="inputUser" path="email" required="required"/>
 		  </div>
 		  <div>
             <form:label for="inputPassword" path="senha">Senha</form:label>

@@ -7,6 +7,5 @@ import com.ezmalteria.domain.FuncionarioTO;
 @Repository
 public interface FuncionarioDao extends CrudRepository<FuncionarioTO, Long> {
 
-	//public FuncionarioTO findOneByLicensePlate(String licensePlate);
-
+	public FuncionarioTO findOneByEmailAndSenha(String idfuncionario,String senha);
 }
