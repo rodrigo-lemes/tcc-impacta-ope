@@ -2,12 +2,14 @@ package com.ezmalteria.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="AgendamentoTeste")
 public class AgendamentoTO {
 
+	@Id
 	@Column(name="idAgendamento")
 	private String idAgendamento;
 	@Column(name="data")
