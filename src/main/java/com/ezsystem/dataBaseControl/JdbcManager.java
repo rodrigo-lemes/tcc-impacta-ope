@@ -9,12 +9,12 @@ import java.sql.Statement;
 public class JdbcManager {
 
 	// Database config
-	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://localhost:3306/ezmalteria";
+	//static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+	static final String DB_URL = "jdbc:postgresql://ec2-184-73-189-221.compute-1.amazonaws.com:5432/ddmuojfd8slkea";
 
 	// Database credentials
-	static final String USER = "root";
-	static final String PASS = "r";
+	static final String USER = "vyahwxsfacnfwv";
+	static final String PASS = "35f1e582883f98bd2e3a7d8884788fadcf52f24cb285a6c149364f5db5ea76bb";
 
 	Connection connectDataBase = null;
 	Statement stmt = null;
