@@ -73,7 +73,7 @@ public class EzSystemController {
 		JdbcManager dataBaseTools = new JdbcManager();
 
 		ResultSet produtos = dataBaseTools
-				.selectJdbc("SELECT * FROM ezmalteria.produto WHERE quantidade < 4");
+				.selectJdbc("SELECT * FROM public.produto WHERE quantidade < 4");
 
 		ArrayList<ProdutoTO> listaProdutosAcabando = new ArrayList<ProdutoTO>();
 
@@ -99,7 +99,7 @@ public class EzSystemController {
 		}
 
 		ResultSet agendamentos = dataBaseTools
-				.selectJdbc("SELECT * FROM ezmalteria.AgendamentoTeste WHERE data = CURRENT_DATE() ORDER BY hora;");
+				.selectJdbc("SELECT * FROM public.AgendamentoTeste WHERE data = CURRENT_DATE() ORDER BY hora;");
 
 		ArrayList<AgendamentoTO> listaAgendamentos = new ArrayList<AgendamentoTO>();
 
@@ -161,7 +161,7 @@ public class EzSystemController {
 		// lista produtos acabando
 
 		ResultSet produtos = dataBaseTools
-				.selectJdbc("SELECT * FROM ezmalteria.produto WHERE quantidade < 4");
+				.selectJdbc("SELECT * FROM public.produto WHERE quantidade < 4");
 
 		ArrayList<ProdutoTO> listaProdutosAcabando = new ArrayList<ProdutoTO>();
 
@@ -190,7 +190,7 @@ public class EzSystemController {
 		ConversorDatas dateTool = new ConversorDatas();
 
 		ResultSet agendamentos = dataBaseTools
-				.selectJdbc("SELECT * FROM ezmalteria.AgendamentoTeste WHERE data = CURRENT_DATE() ORDER BY hora;");
+				.selectJdbc("SELECT * FROM public.AgendamentoTeste WHERE data = CURRENT_DATE() ORDER BY hora;");
 
 		ArrayList<AgendamentoTO> listaAgendamentos = new ArrayList<AgendamentoTO>();
 
@@ -262,10 +262,10 @@ public class EzSystemController {
 				ArrayList<String> nomesFuncionarios = new ArrayList<String>();
 
 				ResultSet getNomeClientes = dataBaseTools
-						.selectJdbc("SELECT nome FROM ezmalteria.cliente");
+						.selectJdbc("SELECT nome FROM public.cliente");
 
 				ResultSet getNomeFuncionarios = dataBaseTools
-						.selectJdbc("SELECT nome FROM ezmalteria.funcionario WHERE perfil = 'func' AND statusFuncionario = '1'");
+						.selectJdbc("SELECT nome FROM public.funcionario WHERE perfil = 'func' AND statusFuncionario = '1'");
 
 				// popular lista de clientes
 
@@ -307,7 +307,7 @@ public class EzSystemController {
 		JdbcManager dataBaseTools = new JdbcManager();
 		insertResult = dataBaseTools
 				.insertJdbc(""
-						+ "INSERT INTO ezmalteria.AgendamentoTeste (data, hora, cliente, funcionario, servico) "
+						+ "INSERT INTO public.AgendamentoTeste (data, hora, cliente, funcionario, servico) "
 						+ " VALUES('"
 						+ dateTool.converterDataBrParaUS(agendamento.getData())
 						+ "','" + agendamento.getHora() + "','"
@@ -362,7 +362,7 @@ public class EzSystemController {
 		ResultSet dadosEditarAgendamento = null;
 
 		dadosEditarAgendamento = dataBaseTools
-				.selectJdbc("SELECT * FROM ezmalteria.AgendamentoTeste WHERE idAgendamento='"
+				.selectJdbc("SELECT * FROM public.AgendamentoTeste WHERE idAgendamento='"
 						+ agendamento.getIdAgendamento() + "'");
 		codigoEmAgendamentoSendoEditado = agendamento.getIdAgendamento();
 		ConversorDatas dateTools = new ConversorDatas();
@@ -407,7 +407,7 @@ public class EzSystemController {
 		try {
 
 			insertResult = dataBaseTools
-					.updateJdbc("UPDATE ezmalteria.AgendamentoTeste SET"
+					.updateJdbc("UPDATE public.AgendamentoTeste SET"
 							+ "   data='"
 							+ dateTool.converterDataBrParaUS(agendamento
 									.getData()) + "', hora='"
@@ -460,7 +460,7 @@ public class EzSystemController {
 		JdbcManager dataBaseTools = new JdbcManager();
 
 		insertResult = dataBaseTools
-				.deleteJdbc("DELETE FROM ezmalteria.AgendamentoTeste WHERE idAgendamento='"
+				.deleteJdbc("DELETE FROM public.AgendamentoTeste WHERE idAgendamento='"
 						+ codigoEmAgendamentoSendoEditado + "'");
 
 		model = new ModelAndView("formularioDeEdicaoAgendamento", "command",
@@ -510,7 +510,7 @@ public class EzSystemController {
 
 		insertResult = dataBaseTools
 				.insertJdbc(""
-						+ "INSERT INTO ezmalteria.cliente (`nome`, `celular`, `telefone`, `email`, `dataNascimento`, `sexo`, `cpf`, `dataInclusao`) "
+						+ "INSERT INTO public.cliente (`nome`, `celular`, `telefone`, `email`, `dataNascimento`, `sexo`, `cpf`, `dataInclusao`) "
 						+ " VALUES('"
 						+ cliente.getNome()
 						+ "','"
@@ -559,7 +559,7 @@ public class EzSystemController {
 		JdbcManager dataBaseTools = new JdbcManager();
 
 		ResultSet clientes = dataBaseTools
-				.selectJdbc("SELECT * FROM ezmalteria.cliente");
+				.selectJdbc("SELECT * FROM public.cliente");
 
 		ConversorDatas dateTool = new ConversorDatas();
 
@@ -617,7 +617,7 @@ public class EzSystemController {
 		ResultSet dadosEditarCliente = null;
 
 		dadosEditarCliente = dataBaseTools
-				.selectJdbc("SELECT * FROM ezmalteria.cliente WHERE idCliente='"
+				.selectJdbc("SELECT * FROM public.cliente WHERE idCliente='"
 						+ cliente.getIdCliente() + "'");
 
 		ConversorDatas dateTools = new ConversorDatas();
@@ -673,7 +673,7 @@ public class EzSystemController {
 		try {
 
 			insertResult = dataBaseTools
-					.updateJdbc("UPDATE ezmalteria.cliente SET "
+					.updateJdbc("UPDATE public.cliente SET "
 							+ "`nome`='"
 							+ cliente.getNome()
 							+ "', `celular`='"
@@ -733,7 +733,7 @@ public class EzSystemController {
 		JdbcManager dataBaseTools = new JdbcManager();
 
 		insertResult = dataBaseTools
-				.deleteJdbc("DELETE FROM ezmalteria.cliente WHERE idCliente='"
+				.deleteJdbc("DELETE FROM public.cliente WHERE idCliente='"
 						+ codigoClienteSendoEditado + "'");
 
 		model = new ModelAndView("formularioDeEdicaoCliente", "command",
@@ -756,7 +756,7 @@ public class EzSystemController {
 		JdbcManager dataBaseTools = new JdbcManager();
 
 		ResultSet clientes = dataBaseTools
-				.selectJdbc("SELECT * FROM ezmalteria.cliente ORDER BY dataInclusao");
+				.selectJdbc("SELECT * FROM public.cliente ORDER BY dataInclusao");
 
 		ArrayList<ClienteTO> listaClientes = new ArrayList<ClienteTO>();
 
@@ -855,7 +855,7 @@ public class EzSystemController {
 
 			ConversorDatas dateTool = new ConversorDatas();
 			insertResult = dataBaseTools
-					.insertJdbc("INSERT INTO ezmalteria.funcionario"
+					.insertJdbc("INSERT INTO public.funcionario"
 							+ "  (`nome`," + " `estadoCivil`," + " `rg`,"
 							+ " `cpf`," + " `dataNascimento`," + " `telefone`,"
 							+ " `celular`," + " `logradouro`," + " `numero`,"
@@ -973,7 +973,7 @@ public class EzSystemController {
 		ResultSet dadosEditarFuncionario = null;
 
 		dadosEditarFuncionario = dataBaseTools
-				.selectJdbc("SELECT * FROM ezmalteria.funcionario WHERE cpf='"
+				.selectJdbc("SELECT * FROM public.funcionario WHERE cpf='"
 						+ funcionario.getCpf() + "'");
 
 		ConversorDatas dateTools = new ConversorDatas();
@@ -1097,7 +1097,7 @@ public class EzSystemController {
 			ConversorDatas dateTool = new ConversorDatas();
 
 			insertResult = dataBaseTools
-					.updateJdbc("UPDATE ezmalteria.funcionario SET"
+					.updateJdbc("UPDATE public.funcionario SET"
 							+ "	`nome`='"
 							+ funcionario.getNome()
 							+ "', `estadoCivil`='"
@@ -1210,7 +1210,7 @@ public class EzSystemController {
 		JdbcManager dataBaseTools = new JdbcManager();
 
 		insertResult = dataBaseTools
-				.deleteJdbc("DELETE FROM ezmalteria.funcionario WHERE cpf='"
+				.deleteJdbc("DELETE FROM public.funcionario WHERE cpf='"
 						+ funcionario.getCpf() + "'");
 
 		model = new ModelAndView("formularioDeEdicaoFuncionario", "command",
@@ -1233,7 +1233,7 @@ public class EzSystemController {
 		JdbcManager dataBaseTools = new JdbcManager();
 
 		ResultSet funcionarios = dataBaseTools
-				.selectJdbc("SELECT * FROM ezmalteria.funcionario ORDER BY dataInclusao");
+				.selectJdbc("SELECT * FROM public.funcionario ORDER BY dataInclusao");
 
 		ArrayList<FuncionarioTO> listaFuncionarios = new ArrayList<FuncionarioTO>();
 
@@ -1333,7 +1333,7 @@ public class EzSystemController {
 		try {
 
 			insertResult = dataBaseTools
-					.insertJdbc("INSERT INTO ezmalteria.despesa (`codigo`, `tipoDespesa`,"
+					.insertJdbc("INSERT INTO public.despesa (`codigo`, `tipoDespesa`,"
 							+ " `dsDespesa`, `valor`, `dataInclusao`) "
 							+ "VALUES ('"
 							+ despesa.getCodigo()
@@ -1408,7 +1408,7 @@ public class EzSystemController {
 		ResultSet dadosEditarDespesa = null;
 
 		dadosEditarDespesa = dataBaseTools
-				.selectJdbc("SELECT * FROM ezmalteria.despesa WHERE codigo='"
+				.selectJdbc("SELECT * FROM public.despesa WHERE codigo='"
 						+ despesa.getCodigo() + "'");
 
 		ConversorDatas dateTools = new ConversorDatas();
@@ -1456,7 +1456,7 @@ public class EzSystemController {
 		try {
 
 			insertResult = dataBaseTools
-					.updateJdbc("UPDATE ezmalteria.despesa SET codigo='"
+					.updateJdbc("UPDATE public.despesa SET codigo='"
 							+ despesa.getCodigo()
 							+ "',tipoDespesa='"
 							+ despesa.getTipoDespesa()
@@ -1514,7 +1514,7 @@ public class EzSystemController {
 		JdbcManager dataBaseTools = new JdbcManager();
 
 		insertResult = dataBaseTools
-				.deleteJdbc("DELETE FROM ezmalteria.despesa WHERE codigo='"
+				.deleteJdbc("DELETE FROM public.despesa WHERE codigo='"
 						+ codigoEmDespesaSendoEditado + "'");
 
 		model = new ModelAndView("formularioDeEdicaoDespesa", "command",
@@ -1539,7 +1539,7 @@ public class EzSystemController {
 		JdbcManager dataBaseTools = new JdbcManager();
 
 		ResultSet despesas = dataBaseTools
-				.selectJdbc("SELECT * FROM ezmalteria.despesa ORDER BY dataInclusao");
+				.selectJdbc("SELECT * FROM public.despesa ORDER BY dataInclusao");
 
 		ArrayList<DespesasTO> listaDespesas = new ArrayList<DespesasTO>();
 
@@ -1609,10 +1609,10 @@ public class EzSystemController {
 				ArrayList<String> nomesFuncionarios = new ArrayList<String>();
 
 				ResultSet getNomeClientes = dataBaseTools
-						.selectJdbc("SELECT nome FROM ezmalteria.cliente");
+						.selectJdbc("SELECT nome FROM public.cliente");
 
 				ResultSet getNomeFuncionarios = dataBaseTools
-						.selectJdbc("SELECT nome FROM ezmalteria.funcionario WHERE perfil = 'func' AND statusFuncionario = '1'");
+						.selectJdbc("SELECT nome FROM public.funcionario WHERE perfil = 'func' AND statusFuncionario = '1'");
 
 				// popular lista de clientes
 
@@ -1660,7 +1660,7 @@ public class EzSystemController {
 
 			ConversorDatas dateTool = new ConversorDatas();
 			insertResult = dataBaseTools
-					.insertJdbc("INSERT INTO ezmalteria.lancamentoOrdemServico"
+					.insertJdbc("INSERT INTO public.lancamentoOrdemServico"
 							+ " (`nomeCliente`, `comanda`, `alicate`,`tipoFuncionario`,"
 							+ " `dataInclusao`, `manicurePreco`, `pedicurePreco`, `francesinhaPreco`, `esmaltarPreco`, `pernaintPreco`, `perna12Preco`,"
 							+ " `virilhaPreco`, `intimaPreco`, `axilaPreco`, `sobrancelhaPreco`, `bucoPreco`, `preco`,"
@@ -1747,7 +1747,7 @@ public class EzSystemController {
 		JdbcManager dataBaseTools = new JdbcManager();
 
 		ResultSet servicosPrestados = dataBaseTools
-				.selectJdbc("SELECT * FROM ezmalteria.lancamentoOrdemServico WHERE dataInclusao != '0001-01-01' ORDER BY nomeCliente,dataInclusao");
+				.selectJdbc("SELECT * FROM public.lancamentoOrdemServico WHERE dataInclusao != '0001-01-01' ORDER BY nomeCliente,dataInclusao");
 
 		ConversorDatas dateTool = new ConversorDatas();
 
@@ -1855,7 +1855,7 @@ public class EzSystemController {
 		ResultSet servicosPrestados = null;
 
 		servicosPrestados = dataBaseTools
-				.selectJdbc("SELECT * FROM ezmalteria.lancamentoOrdemServico WHERE idLancamento ='"
+				.selectJdbc("SELECT * FROM public.lancamentoOrdemServico WHERE idLancamento ='"
 						+ servicos.getIdLancamento()
 						+ "' AND dataInclusao != '0001-01-01' ORDER BY nomeCliente,dataInclusao");
 
@@ -1983,7 +1983,7 @@ public class EzSystemController {
 		try {
 
 			insertResult = dataBaseTools
-					.updateJdbc("UPDATE ezmalteria.lancamentoOrdemServico SET nomeCliente='"
+					.updateJdbc("UPDATE public.lancamentoOrdemServico SET nomeCliente='"
 							+ servico.getNomeCliente()
 							+ "', comanda='"
 
@@ -2088,7 +2088,7 @@ public class EzSystemController {
 		JdbcManager dataBaseTools = new JdbcManager();
 
 		insertResult = dataBaseTools
-				.deleteJdbc("DELETE FROM ezmalteria.lancamentoOrdemServico WHERE idLancamento='"
+				.deleteJdbc("DELETE FROM public.lancamentoOrdemServico WHERE idLancamento='"
 						+ codigoDeServicoPrestadoSendoEditado + "'");
 		model = new ModelAndView("formularioDeEdicaoServicosRealizados",
 				"command", new LancamentoServicoTO());
@@ -2112,7 +2112,7 @@ public class EzSystemController {
 		ConversorDatas dateTool = new ConversorDatas();
 
 		ResultSet servicosPrestados = dataBaseTools
-				.selectJdbc("SELECT * FROM ezmalteria.lancamentoOrdemServico WHERE dataInclusao != '0001-01-01"
+				.selectJdbc("SELECT * FROM public.lancamentoOrdemServico WHERE dataInclusao != '0001-01-01"
 						+ "' AND dataInclusao >='"
 						+ dateTool.converterDataBrParaUS(servico
 								.getDataPesquisaInicio())
@@ -2291,7 +2291,7 @@ public class EzSystemController {
 		try {
 
 			insertResult = dataBaseTools
-					.insertJdbc("INSERT INTO ezmalteria.produto (`tipo`,"
+					.insertJdbc("INSERT INTO public.produto (`tipo`,"
 							+ " `nomeProduto`, `Marca`, `cor`, "
 							+ "`quantidade`, `valor`, `codigoProduto`, `dataInclusao`) VALUES ('"
 							+ produto.getTipo() + "','"
@@ -2362,7 +2362,7 @@ public class EzSystemController {
 		ResultSet dadosEditarProduto = null;
 
 		dadosEditarProduto = dataBaseTools
-				.selectJdbc("SELECT * FROM ezmalteria.produto WHERE codigoProduto='"
+				.selectJdbc("SELECT * FROM public.produto WHERE codigoProduto='"
 						+ produto.getCodigoProduto() + "'");
 
 		ConversorDatas dateTools = new ConversorDatas();
@@ -2419,7 +2419,7 @@ public class EzSystemController {
 		try {
 
 			insertResult = dataBaseTools
-					.updateJdbc("UPDATE ezmalteria.produto SET" + " `tipo`='"
+					.updateJdbc("UPDATE public.produto SET" + " `tipo`='"
 							+ produto.getTipo() + "',`nomeProduto`='"
 							+ produto.getNomeProduto() + "',`Marca`='"
 							+ produto.getMarca() + "',`cor`='"
@@ -2472,7 +2472,7 @@ public class EzSystemController {
 		JdbcManager dataBaseTools = new JdbcManager();
 
 		insertResult = dataBaseTools
-				.deleteJdbc("DELETE FROM ezmalteria.produto WHERE codigoProduto='"
+				.deleteJdbc("DELETE FROM public.produto WHERE codigoProduto='"
 						+ codigoEmProdutoSendoEditado + "'");
 
 		String insertResultAttributeModel = insertResult;
@@ -2494,7 +2494,7 @@ public class EzSystemController {
 		JdbcManager dataBaseTools = new JdbcManager();
 
 		ResultSet produtos = dataBaseTools
-				.selectJdbc("SELECT * FROM ezmalteria.produto ORDER BY (quantidade+0)");
+				.selectJdbc("SELECT * FROM public.produto ORDER BY (quantidade+0)");
 
 		ArrayList<ProdutoTO> listaProdutos = new ArrayList<ProdutoTO>();
 
@@ -2564,7 +2564,7 @@ public class EzSystemController {
 		JdbcManager dataBaseTools = new JdbcManager();
 
 		ResultSet resultadoBusca = dataBaseTools
-				.selectJdbc("select senha from ezmalteria.funcionario WHERE email = \'"
+				.selectJdbc("select senha from public.funcionario WHERE email = \'"
 						+ funcionario.getEmail() + "\'");
 
 		String senha = "";
@@ -2610,7 +2610,7 @@ public class EzSystemController {
 		ConversorDatas dateTool = new ConversorDatas();
 		// select Despesa
 		ResultSet despesasCadastradas = dataBaseTools
-				.selectJdbc("SELECT * FROM ezmalteria.despesa");
+				.selectJdbc("SELECT * FROM public.despesa");
 
 		String inicio = "";
 		String fim = "";
@@ -2648,7 +2648,7 @@ public class EzSystemController {
 
 		// select servicos lancados;
 		ResultSet servicosLancados = dataBaseTools
-				.selectJdbc("SELECT * FROM ezmalteria.lancamentoOrdemServico WHERE dataInclusao != '0001-01-01'");
+				.selectJdbc("SELECT * FROM public.lancamentoOrdemServico WHERE dataInclusao != '0001-01-01'");
 
 		try {
 			while (servicosLancados.next()) {
@@ -2710,7 +2710,7 @@ public class EzSystemController {
 		
 		ResultSet resultado = null;
 		resultado = dataBaseTools
-				.selectJdbc("SELECT * FROM ezmalteria.folhaDePonto WHERE dataInclusao = CURRENT_DATE() AND idFuncionario = "
+				.selectJdbc("SELECT * FROM public.folhaDePonto WHERE dataInclusao = CURRENT_DATE() AND idFuncionario = "
 						+ funcionarioLoaded.getIdFuncionario());
 		String dado = "";
 
@@ -2725,7 +2725,7 @@ public class EzSystemController {
 
 		if (dado.isEmpty()) {
 			dataBaseTools
-					.insertJdbc("INSERT INTO ezmalteria.folhaDePonto (dataInclusao, idFuncionario) VALUES (CURRENT_DATE(),'"
+					.insertJdbc("INSERT INTO public.folhaDePonto (dataInclusao, idFuncionario) VALUES (CURRENT_DATE(),'"
 							+ funcionarioLoaded.getIdFuncionario() + "')");
 		} else {
 			return "erroPonto";
