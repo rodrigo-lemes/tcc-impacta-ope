@@ -65,6 +65,11 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.1-901.jdbc4</version>
+		</dependency>
 
 		<!-- Google Gson Dependency to handle JSON objects -->
 		<dependency>
@@ -91,7 +96,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>1.2.5.RELEASE</version>
 				<executions>
 					<execution>
 						<goals>
