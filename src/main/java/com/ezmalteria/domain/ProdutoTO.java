@@ -7,33 +7,34 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name="produto")
+@Table(name = "produto")
 public class ProdutoTO {
 
 	@Id
-	@Column(name="idproduto")
+	@Column(name = "idproduto")
 	private String idProduto;
-	@Column(name="tipo")
+	@Column(name = "tipo")
 	private String tipo;
-	@Column(name="nomeproduto")
+	@Column(name = "nomeproduto")
 	private String nomeProduto;
-	@Column(name="marca")
+	@Column(name = "marca")
 	private String marca;
-	/*@Column(name="identificacaoproduto")
-	private String identificacaoProduto;*/
-	@Column(name="cor")
+	/*
+	 * @Column(name="identificacaoproduto") private String identificacaoProduto;
+	 */
+	@Column(name = "cor")
 	private String cor;
-	@Column(name="quantidade")
+	@Column(name = "quantidade")
 	private String quantidade;
-	@Column(name="valor")
+	@Column(name = "valor")
 	private String valor;
-	@Column(name="codigoproduto")
+	@Column(name = "codigoproduto")
 	private String codigoProduto;
-	@Column(name="datainclusao")
+	@Column(name = "datainclusao")
 	private String dataInclusao;
-	@Column(name="dataalteracao")
+	@Column(name = "dataalteracao")
 	private String dataAlteracao;
-	@Column(name="dataexclusao")
+	@Column(name = "dataexclusao")
 	private String dataExclusao;
 
 	@Transient
@@ -66,32 +67,31 @@ public class ProdutoTO {
 	}
 
 	public String getTipo() {
-
-		if (tipo.equals("depilacao")) {
-			tipo = "1";
-		} else {
-			if (tipo.equals("manicure")) {
-				tipo = "2";
+		if (null != tipo) {
+			if (tipo.equals("depilacao")) {
+				tipo = "1";
 			} else {
-				tipo = "3";
+				if (tipo.equals("manicure")) {
+					tipo = "2";
+				} else {
+					tipo = "3";
+				}
 			}
 		}
-
 		return tipo;
+
 	}
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
-/*	public String getIdentificacaoProduto() {
-		return identificacaoProduto;
-	}
-
-	public void setIdentificacaoProduto(String identificacaoProduto) {
-		this.identificacaoProduto = identificacaoProduto;
-	}
-*/
+	/*
+	 * public String getIdentificacaoProduto() { return identificacaoProduto; }
+	 * 
+	 * public void setIdentificacaoProduto(String identificacaoProduto) {
+	 * this.identificacaoProduto = identificacaoProduto; }
+	 */
 	public String getCor() {
 		return cor;
 	}
