@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class AgendamentoTO {
 
 	@Id
-	@Column(name="idAgendamento")
+	@Column(name="idagendamento")
 	private String idAgendamento;
 	@Column(name="data")
 	private String data;
