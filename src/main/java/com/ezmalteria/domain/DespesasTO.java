@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="despesa")
@@ -26,9 +27,10 @@ public class DespesasTO {
 	private String dataAlteracao;
 	@Column(name="databaixa")
 	private String dataBaixa;
-	@Column(name="datapesquisainicio")
+	
+	@Transient
 	private String dataPesquisaInicio;
-	@Column(name="datapesquisafim")
+	@Transient
 	private String dataPesquisaFim;
 	
 	public String getCodigo() {
