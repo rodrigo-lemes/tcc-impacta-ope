@@ -148,8 +148,6 @@ public class EzSystemController {
 	@RequestMapping(value = "/home", method = RequestMethod.POST)
 	public ModelAndView inicio(final FuncionarioTO usuario, @ModelAttribute("command") AgendamentoTO agendamento) {
 
-		JdbcManager dataBaseTools = new JdbcManager();
-
 		funcionarioLoaded = funcionarioFacade.getFuncionarioByCredentials(usuario);
 
 		ModelAndView model = new ModelAndView(loginCheckedContext);

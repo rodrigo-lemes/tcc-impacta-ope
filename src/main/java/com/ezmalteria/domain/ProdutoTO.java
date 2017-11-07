@@ -19,8 +19,8 @@ public class ProdutoTO {
 	private String nomeProduto;
 	@Column(name="marca")
 	private String marca;
-	@Column(name="identificacaoproduto")
-	private String identificacaoProduto;
+	/*@Column(name="identificacaoproduto")
+	private String identificacaoProduto;*/
 	@Column(name="cor")
 	private String cor;
 	@Column(name="quantidade")
@@ -84,14 +84,14 @@ public class ProdutoTO {
 		this.tipo = tipo;
 	}
 
-	public String getIdentificacaoProduto() {
+/*	public String getIdentificacaoProduto() {
 		return identificacaoProduto;
 	}
 
 	public void setIdentificacaoProduto(String identificacaoProduto) {
 		this.identificacaoProduto = identificacaoProduto;
 	}
-
+*/
 	public String getCor() {
 		return cor;
 	}
