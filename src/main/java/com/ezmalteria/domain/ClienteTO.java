@@ -1,20 +1,43 @@
 package com.ezmalteria.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+@Entity
+@Table(name="cliente")
 public class ClienteTO {
-//Insert OK - Esperando adicoes na jsp
-	private String idCliente = "";
-	private String nome = "";
-	private String telRes = "";
-	private String telCel = "";
-	private String email = "";
-	private String nascimento = "";
-	private String sexo = "";
-	private String cpf = "";
-	private String dataInclusao = "";
-	private String dataAlteracao = "";
-	private String dataExclusao = "";
-	private String dataPesquisaInicio = "";
-	private String dataPesquisaFim = "";
+
+	@Id
+	@Column(name="idcliente")
+	private String idCliente;
+	@Column(name="nome")
+	private String nome;
+	@Column(name="telres")
+	private String telRes;
+	@Column(name="telcel")
+	private String telCel;
+	@Column(name="email")
+	private String email;
+	@Column(name="nascimento")
+	private String nascimento;
+	@Column(name="sexo")
+	private String sexo;
+	@Column(name="cpf")
+	private String cpf;
+	@Column(name="datainclusao")
+	private String dataInclusao;
+	@Column(name="dataalteracao")
+	private String dataAlteracao;
+	@Column(name="dataexclusao")
+	private String dataExclusao;
+	
+	@Transient
+	private String dataPesquisaInicio;
+	@Transient
+	private String dataPesquisaFim;
 
 	public void setNome(String nome) {
 		this.nome = nome;
