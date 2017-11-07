@@ -4,21 +4,22 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="produto")
 public class ProdutoTO {
 
 	@Id
-	@Column(name="idProduto")
+	@Column(name="idproduto")
 	private String idProduto;
 	@Column(name="tipo")
 	private String tipo;
-	@Column(name="nomeProduto")
+	@Column(name="nomeproduto")
 	private String nomeProduto;
 	@Column(name="marca")
 	private String marca;
-	@Column(name="identificacaoProduto")
+	@Column(name="identificacaoproduto")
 	private String identificacaoProduto;
 	@Column(name="cor")
 	private String cor;
@@ -26,17 +27,18 @@ public class ProdutoTO {
 	private String quantidade;
 	@Column(name="valor")
 	private String valor;
-	@Column(name="codigoProduto")
+	@Column(name="codigoproduto")
 	private String codigoProduto;
-	@Column(name="dataInclusao")
+	@Column(name="datainclusao")
 	private String dataInclusao;
-	@Column(name="dataAlteracao")
+	@Column(name="dataalteracao")
 	private String dataAlteracao;
-	@Column(name="dataExclusao")
+	@Column(name="dataexclusao")
 	private String dataExclusao;
-	@Column(name="dataPesquisaInicio")
+
+	@Transient
 	private String dataPesquisaInicio;
-	@Column(name="dataPesquisaFim")
+	@Transient
 	private String dataPesquisaFim;
 
 	public String getDataPesquisaInicio() {
