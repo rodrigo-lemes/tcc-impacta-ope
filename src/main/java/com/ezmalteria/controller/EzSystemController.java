@@ -26,8 +26,10 @@ import com.ezmalteria.domain.FuncionarioTO;
 import com.ezmalteria.domain.LancamentoServicoTO;
 import com.ezmalteria.domain.ProdutoTO;
 import com.ezmalteria.facade.AgendamentoFacade;
+import com.ezmalteria.facade.DespesaFacade;
 import com.ezmalteria.facade.FuncionarioFacade;
 import com.ezmalteria.facade.ProdutoFacade;
+import com.ezmalteria.facade.ServicoFacade;
 import com.ezsystem.dataBaseControl.JdbcManager;
 import com.ezsystem.utils.ConversorDatas;
 import com.ezsystem.utils.Logger;
@@ -41,13 +43,19 @@ import com.ezsystem.utils.javaMailUtil;
 public class EzSystemController {
 
 	@Autowired
-	FuncionarioFacade funcionarioFacade;
+	private FuncionarioFacade funcionarioFacade;
 
 	@Autowired
-	ProdutoFacade produtoFacade;
+	private ProdutoFacade produtoFacade;
 	
 	@Autowired
-	AgendamentoFacade agendamentoFacade;
+	private AgendamentoFacade agendamentoFacade;
+	
+	@Autowired
+	private DespesaFacade despesaFacade;
+	
+	@Autowired
+	private ServicoFacade servicoFacade;
 
 	private FuncionarioTO funcionarioLoaded;
 
@@ -2107,83 +2115,15 @@ public class EzSystemController {
 	public String relatorioFinanceiro(Model modelo, @ModelAttribute("command") DespesasTO despesa) {
 		// Entidades de busca
 
-		FuncionarioTO funcionario = null;
-		LancamentoServicoTO servicoLancado = null;
-
-		// Listas
-		ArrayList<DespesasTO> listaDespesas = new ArrayList<DespesasTO>();
-		ArrayList<LancamentoServicoTO> listaServicosRealizados = new ArrayList<LancamentoServicoTO>();
-		ArrayList<FuncionarioTO> listaFuncionariosAtivos = new ArrayList<FuncionarioTO>();
-
-		// Databasetools
-		JdbcManager dataBaseTools = new JdbcManager();
-		// Date Format Tool
-		ConversorDatas dateTool = new ConversorDatas();
-		// select Despesa
-		ResultSet despesasCadastradas = dataBaseTools.selectJdbc("SELECT * FROM public.despesa");
+		List<DespesasTO> listaDespesas = despesaFacade.getAllExpenses();
+		List<LancamentoServicoTO> listaServicosRealizados = servicoFacade.getAllServices();
 
 		String inicio = "";
 		String fim = "";
 
-		try {
-			while (despesasCadastradas.next()) {
-
-				inicio = despesa.getDataPesquisaInicio();
-				fim = despesa.getDataPesquisaFim();
-
-				despesa = new DespesasTO();
-
-				despesa.setDsDespesa(despesasCadastradas.getString("dsDespesa"));
-
-				despesa.setValor(despesasCadastradas.getString("valor"));
-
-				despesa.setDataInclusao(dateTool.converterDataUsParaBr(despesasCadastradas.getString("dataInclusao")));
-
-				despesa.setDataPesquisaInicio(inicio);
-				despesa.setDataPesquisaFim(fim);
-				System.out.println(despesa.getCodigo());
-				listaDespesas.add(despesa);
-
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 		modelo.addAttribute("listaDespesas", listaDespesas);
 		modelo.addAttribute("dataPesquisaInicio", inicio);
 		modelo.addAttribute("dataPesquisaFim", fim);
-
-		// select servicos lancados;
-		ResultSet servicosLancados = dataBaseTools
-				.selectJdbc("SELECT * FROM public.lancamentoOrdemServico WHERE dataInclusao != '0001-01-01'");
-
-		try {
-			while (servicosLancados.next()) {
-				servicoLancado = new LancamentoServicoTO();
-
-				servicoLancado
-						.setDataInclusao(dateTool.converterDataUsParaBr(servicosLancados.getString("dataInclusao")));
-
-				servicoLancado.setAxilaPreco(servicosLancados.getString("axilaPreco"));
-				servicoLancado.setBucoPreco(servicosLancados.getString("bucoPreco"));
-				servicoLancado.setEsmaltarPreco(servicosLancados.getString("esmaltarPreco"));
-				servicoLancado.setFrancesinhaPreco(servicosLancados.getString("francesinhaPreco"));
-				servicoLancado.setIntimaPreco(servicosLancados.getString("intimaPreco"));
-				servicoLancado.setManicurePreco(servicosLancados.getString("manicurePreco"));
-				servicoLancado.setPedicurePreco(servicosLancados.getString("pedicurePreco"));
-				servicoLancado.setPerna12Preco(servicosLancados.getString("perna12Preco"));
-				servicoLancado.setPernaintPreco(servicosLancados.getString("pernaintPreco"));
-				servicoLancado.setSobrancelhaPreco(servicosLancados.getString("sobrancelhaPreco"));
-				servicoLancado.setVirilhaPreco(servicosLancados.getString("virilhaPreco"));
-
-				servicoLancado.setPreco(servicosLancados.getString("preco"));
-
-				listaServicosRealizados.add(servicoLancado);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 
 		modelo.addAttribute("listaServicosRealizados", listaServicosRealizados);
 

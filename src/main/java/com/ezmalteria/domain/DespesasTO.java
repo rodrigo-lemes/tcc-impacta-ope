@@ -1,19 +1,24 @@
 package com.ezmalteria.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="despesa")
 public class DespesasTO {
 	
-	//criado insert, falta jsp
-	
-	private String idDespesa = "";
-	private String codigo = "";
-	private String tipoDespesa = "";
-	private String dsDespesa = "";
-	private String valor = "";
-	private String dataInclusao = "";
-	private String dataAlteracao = "";
-	private String dataBaixa = "";
-	private String dataPesquisaInicio = "";
-	private String dataPesquisaFim = "";
+	@Id
+	private String idDespesa;
+	private String codigo;
+	private String tipoDespesa;
+	private String dsDespesa;
+	private String valor;
+	private String dataInclusao;
+	private String dataAlteracao;
+	private String dataBaixa;
+	private String dataPesquisaInicio;
+	private String dataPesquisaFim;
 	
 	public String getCodigo() {
 		return codigo;
