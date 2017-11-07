@@ -26,6 +26,7 @@ import com.ezmalteria.domain.FuncionarioTO;
 import com.ezmalteria.domain.LancamentoServicoTO;
 import com.ezmalteria.domain.ProdutoTO;
 import com.ezmalteria.facade.AgendamentoFacade;
+import com.ezmalteria.facade.ClienteFacade;
 import com.ezmalteria.facade.DespesaFacade;
 import com.ezmalteria.facade.FuncionarioFacade;
 import com.ezmalteria.facade.ProdutoFacade;
@@ -47,15 +48,18 @@ public class EzSystemController {
 
 	@Autowired
 	private ProdutoFacade produtoFacade;
-	
+
 	@Autowired
 	private AgendamentoFacade agendamentoFacade;
-	
+
 	@Autowired
 	private DespesaFacade despesaFacade;
-	
+
 	@Autowired
 	private ServicoFacade servicoFacade;
+
+	@Autowired
+	private ClienteFacade clienteFacade;
 
 	private FuncionarioTO funcionarioLoaded;
 
@@ -174,13 +178,12 @@ public class EzSystemController {
 		}
 
 		List<AgendamentoTO> listaAgendamentos = agendamentoFacade.getAllDatings();
-		
-		
+
 		try {
 
-			if ( null != funcionarioLoaded.getIdFuncionario() && !funcionarioLoaded.getIdFuncionario().isEmpty()) {
+			if (null != funcionarioLoaded.getIdFuncionario() && !funcionarioLoaded.getIdFuncionario().isEmpty()) {
 
-				//log.gravarLog("UsuarioExiste: " + usuario.getEmail());
+				// log.gravarLog("UsuarioExiste: " + usuario.getEmail());
 
 				if (funcionarioLoaded.getEstado().equals("1")) {
 
@@ -423,25 +426,10 @@ public class EzSystemController {
 		}
 	}
 
-	// Salvar cadastro
 	@RequestMapping(value = "/salvarClienteCadastrado", method = RequestMethod.POST)
 	public ModelAndView salvarCliente(ClienteTO cliente, ModelAndView model) {
 
-		JdbcManager dataBaseTools = new JdbcManager();
-
-		ConversorDatas dateTool = new ConversorDatas();
-
-		System.out.println(cliente.getDataInclusao() + cliente.getNascimento());
-
-		insertResult = dataBaseTools.insertJdbc(
-				"" + "INSERT INTO public.cliente (`nome`, `celular`, `telefone`, `email`, `dataNascimento`, `sexo`, `cpf`, `dataInclusao`) "
-						+ " VALUES('" + cliente.getNome() + "','" + cliente.getTelCel() + "','" + cliente.getTelRes()
-						+ "','" + cliente.getEmail() + "','" + dateTool.converterDataBrParaUS(cliente.getNascimento())
-						+ "','" + cliente.getSexo() + "','" + cliente.getCpf() + "'," + "NOW())");
-
-		if (!loginCheckedContext.equals("erroLogin")) {
-			if (insertResult.equals("1")) {
-
+		clienteFacade.saveClient(cliente);
 				String insertResultModelAttribute = insertResult;
 
 				model = new ModelAndView("gerenciarClientes", "command", new ClienteTO());
@@ -449,20 +437,14 @@ public class EzSystemController {
 				model.addObject("insertResult", insertResultModelAttribute);
 
 				insertResult = "";
-				return model;
-			} else {
-				String insertResultModelAttribute = insertResult;
-
-				model = new ModelAndView("gerenciarClientes", "command", new ClienteTO());
-
-				model.addObject("insertResult", insertResultModelAttribute);
-
-				insertResult = "";
-				return model;
-			}
-		} else {
+			//	return model;
+			//} else {
+				
+				//return model;
+		//	}
+		//} else {
 			return new ModelAndView(loginCheckedContext, "command", null);
-		}
+		//}
 	}
 
 	// busca para editar
