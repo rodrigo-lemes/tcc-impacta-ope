@@ -182,7 +182,7 @@ public class EzSystemController {
 
 			if (!funcionarioLoaded.getIdFuncionario().isEmpty() && null != funcionarioLoaded.getIdFuncionario()) {
 
-				log.gravarLog("UsuarioExiste: " + usuario.getEmail());
+				//log.gravarLog("UsuarioExiste: " + usuario.getEmail());
 
 				if (funcionarioLoaded.getEstado().equals("1")) {
 
