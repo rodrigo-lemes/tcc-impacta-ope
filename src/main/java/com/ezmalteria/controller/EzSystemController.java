@@ -144,7 +144,6 @@ public class EzSystemController {
 
 	}
 
-	// Pagina inicial que checa login
 	@RequestMapping(value = "/home", method = RequestMethod.POST)
 	public ModelAndView inicio(final FuncionarioTO usuario, @ModelAttribute("command") AgendamentoTO agendamento) {
 
@@ -166,21 +165,12 @@ public class EzSystemController {
 			}
 		}
 
-		// buscar agendamentos do dia
-
-		ConversorDatas dateTool = new ConversorDatas();
-
-	/*	ResultSet agendamentos = dataBaseTools
-				.selectJdbc("SELECT * FROM public.AgendamentoTeste WHERE data = CURRENT_DATE() ORDER BY hora;");
-*/
-		
-		//TODO showing all datings, change to see only current date data
 		List<AgendamentoTO> listaAgendamentos = agendamentoFacade.getAllDatings();
 		
 		
 		try {
 
-			if (!funcionarioLoaded.getIdFuncionario().isEmpty() && null != funcionarioLoaded.getIdFuncionario()) {
+			if ( null != funcionarioLoaded.getIdFuncionario() && !funcionarioLoaded.getIdFuncionario().isEmpty()) {
 
 				//log.gravarLog("UsuarioExiste: " + usuario.getEmail());
 
