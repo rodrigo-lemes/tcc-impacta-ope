@@ -1,5 +1,6 @@
 package com.ezmalteria.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,15 +10,25 @@ import javax.persistence.Table;
 public class DespesasTO {
 	
 	@Id
+	@Column(name="iddespesa")
 	private String idDespesa;
+	@Column(name="")
 	private String codigo;
+	@Column(name="tipodespesa")
 	private String tipoDespesa;
+	@Column(name="dsdespesa")
 	private String dsDespesa;
+	@Column(name="valor")
 	private String valor;
+	@Column(name="datainclusao")
 	private String dataInclusao;
+	@Column(name="dataalteracao")
 	private String dataAlteracao;
+	@Column(name="databaixa")
 	private String dataBaixa;
+	@Column(name="datapesquisainicio")
 	private String dataPesquisaInicio;
+	@Column(name="datapesquisafim")
 	private String dataPesquisaFim;
 	
 	public String getCodigo() {
