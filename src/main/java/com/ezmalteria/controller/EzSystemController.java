@@ -430,21 +430,14 @@ public class EzSystemController {
 	public ModelAndView salvarCliente(ClienteTO cliente, ModelAndView model) {
 
 		clienteFacade.saveClient(cliente);
-				String insertResultModelAttribute = insertResult;
+		String insertResultModelAttribute = insertResult;
 
-				model = new ModelAndView("gerenciarClientes", "command", new ClienteTO());
+		model = new ModelAndView("gerenciarClientes", "command", new ClienteTO());
 
-				model.addObject("insertResult", insertResultModelAttribute);
+		model.addObject("insertResult", insertResultModelAttribute);
 
-				insertResult = "";
-			//	return model;
-			//} else {
-				
-				//return model;
-		//	}
-		//} else {
-			return new ModelAndView(loginCheckedContext, "command", null);
-		//}
+		insertResult = "";
+		return new ModelAndView(loginCheckedContext, "command", null);
 	}
 
 	// busca para editar
@@ -648,7 +641,7 @@ public class EzSystemController {
 				cliente.setTelCel(clientes.getString("celular"));
 				cliente.setSexo(clientes.getString("sexo"));
 				cliente.setNascimento(clientes.getString("dataNascimento"));
-	//			cliente.setDataInclusao(dateTool.converterDataUsParaBr(clientes.getString("dataInclusao")));
+				// cliente.setDataInclusao(dateTool.converterDataUsParaBr(clientes.getString("dataInclusao")));
 
 				listaClientes.add(cliente);
 
@@ -706,49 +699,14 @@ public class EzSystemController {
 	@RequestMapping(value = "/salvarFuncionarioCadastrado", method = RequestMethod.POST)
 	public ModelAndView salvarFuncionario(FuncionarioTO funcionario, ModelAndView model) {
 
-		JdbcManager dataBaseTools = new JdbcManager();
+		funcionarioFacade.saveFuncionario(funcionario);
 
-		try {
+		String insertResultModelAttribute = insertResult;
 
-			ConversorDatas dateTool = new ConversorDatas();
-			insertResult = dataBaseTools.insertJdbc("INSERT INTO public.funcionario" + "  (`nome`," + " `estadoCivil`,"
-					+ " `rg`," + " `cpf`," + " `dataNascimento`," + " `telefone`," + " `celular`," + " `logradouro`,"
-					+ " `numero`," + " `bairro`," + " `cidade`, " + "	`uf`," + " `cep`," + " `complemento`,"
-					+ " `tipoFuncionario`," + " `carteiraTrabalho`," + " `statusFuncionario`," + " `dataInclusao`,"
-					+ " `codigoFuncionario`," + " `salario`," + " `email`," + " `senha`," + " `perfil`,"
-					+ " `sexo`) VALUES ('" + funcionario.getNome() + "','" + funcionario.getEstadoCivil() + "','"
-					+ funcionario.getRg() + "','" + funcionario.getCpf() + "','"
-					+ dateTool.converterDataBrParaUS(funcionario.getNascimento()) + "','" + funcionario.getTelRes()
-					+ "','" + funcionario.getTelCel() + "','" + funcionario.getLogradouro() + "','"
-					+ funcionario.getNumero() + "','" + funcionario.getBairro() + "','" + funcionario.getCidade()
-					+ "','" + funcionario.getUf() + "','" + funcionario.getCep() + "','" + funcionario.getComplemento()
-					+ "','" + funcionario.getTipoFuncionario() + "','" + funcionario.getCarteiraTrabalho() + "','"
-					+ funcionario.getEstado() + "'," + "NOW()" + ",'" + funcionario.getCodFunc() + "','"
-					+ funcionario.getSalarioFixo() + "','" + funcionario.getEmail() + "','" + funcionario.getSenha()
-					+ "','" + funcionario.getPerfil() + "','" + funcionario.getSexo() + "')");
-		} catch (Exception e) {
-			String insertResultModelAttribute = insertResult;
-
-			model = new ModelAndView("gerenciarFuncionarios", "command", new FuncionarioTO());
-			model.addObject("insertResult", insertResultModelAttribute);
-			insertResult = "";
-			return model;
-		}
-		if (insertResult.equals("1")) {
-			String insertResultModelAttribute = insertResult;
-
-			model = new ModelAndView("gerenciarFuncionarios", "command", new FuncionarioTO());
-			model.addObject("insertResult", insertResultModelAttribute);
-			insertResult = "";
-			return model;
-		} else {
-			String insertResultModelAttribute = insertResult;
-
-			model = new ModelAndView("gerenciarFuncionarios", "command", new FuncionarioTO());
-			model.addObject("insertResult", insertResultModelAttribute);
-			insertResult = "";
-			return model;
-		}
+		model = new ModelAndView("gerenciarFuncionarios", "command", new FuncionarioTO());
+		model.addObject("insertResult", insertResultModelAttribute);
+		insertResult = "";
+		return model;
 
 	}
 

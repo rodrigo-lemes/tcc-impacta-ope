@@ -18,5 +18,9 @@ public class FuncionarioFacade {
 
 		return funcionarioMetadata;
 	}
+	
+	public void saveFuncionario(FuncionarioTO funcionarioMetaData){
+		fdao.save(funcionarioMetaData);
+	}
 
 }
