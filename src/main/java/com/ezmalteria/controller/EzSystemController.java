@@ -996,35 +996,9 @@ public class EzSystemController {
 	// Salvar cadastro
 	@RequestMapping(value = "/salvarDespesa", method = RequestMethod.POST)
 	public ModelAndView salvarDespesa(DespesasTO despesa, ModelAndView model) {
+		
+		despesaFacade.saveExpense(despesa);
 
-		JdbcManager dataBaseTools = new JdbcManager();
-		ConversorDatas dateTool = new ConversorDatas();
-
-		try {
-
-			insertResult = dataBaseTools.insertJdbc("INSERT INTO public.despesa (`codigo`, `tipoDespesa`,"
-					+ " `dsDespesa`, `valor`, `dataInclusao`) " + "VALUES ('" + despesa.getCodigo() + "','"
-					+ despesa.getTipoDespesa() + "','" + despesa.getDsDespesa() + "','" + despesa.getValor() + "','"
-					+ dateTool.converterDataBrParaUS(despesa.getDataInclusao()) + "')");
-
-			if (insertResult.equals("1")) {
-				String insertResultModelAttribute = insertResult;
-
-				model = new ModelAndView("gerenciarDespesas", "command", new DespesasTO());
-
-				model.addObject("insertResult", insertResultModelAttribute);
-				insertResult = "";
-				return model;
-			} else {
-				String insertResultModelAttribute = insertResult;
-
-				model = new ModelAndView("gerenciarDespesas", "command", new DespesasTO());
-
-				model.addObject("insertResult", insertResultModelAttribute);
-				insertResult = "";
-				return model;
-			}
-		} catch (Exception e) {
 			String insertResultModelAttribute = insertResult;
 
 			model = new ModelAndView("gerenciarDespesas", "command", new DespesasTO());
@@ -1032,7 +1006,6 @@ public class EzSystemController {
 			model.addObject("insertResult", insertResultModelAttribute);
 			insertResult = "";
 			return model;
-		}
 
 	}
 
