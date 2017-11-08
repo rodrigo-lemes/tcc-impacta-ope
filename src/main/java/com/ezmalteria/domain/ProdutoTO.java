@@ -36,11 +36,11 @@ public class ProdutoTO {
 	private String codigoProduto;
 	@Column(name = "datainclusao")
 	private String dataInclusao;
-	@Column(name = "dataalteracao")
+	/*@Column(name = "dataalteracao")
 	private String dataAlteracao;
 	@Column(name = "dataexclusao")
 	private String dataExclusao;
-
+*/
 	@Transient
 	private String dataPesquisaInicio;
 	@Transient
@@ -128,7 +128,7 @@ public class ProdutoTO {
 		this.dataInclusao = dataInclusao;
 	}
 
-	public String getDataAlteracao() {
+	/*public String getDataAlteracao() {
 		return dataAlteracao;
 	}
 
@@ -142,7 +142,7 @@ public class ProdutoTO {
 
 	public void setDataExclusao(String dataExclusao) {
 		this.dataExclusao = dataExclusao;
-	}
+	}*/
 
 	public String getNomeProduto() {
 		return nomeProduto;
