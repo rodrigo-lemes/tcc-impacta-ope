@@ -34,8 +34,8 @@ public class ProdutoTO {
 	private String valor;
 	@Column(name = "codigoproduto")
 	private String codigoProduto;
-	@Column(name = "datainclusao")
-	private String dataInclusao;
+	/*@Column(name = "datainclusao")
+	private String dataInclusao;*/
 	/*@Column(name = "dataalteracao")
 	private String dataAlteracao;
 	@Column(name = "dataexclusao")
@@ -120,13 +120,13 @@ public class ProdutoTO {
 		this.valor = valor;
 	}
 
-	public String getDataInclusao() {
+	/*public String getDataInclusao() {
 		return dataInclusao;
 	}
 
 	public void setDataInclusao(String dataInclusao) {
 		this.dataInclusao = dataInclusao;
-	}
+	}*/
 
 	/*public String getDataAlteracao() {
 		return dataAlteracao;
