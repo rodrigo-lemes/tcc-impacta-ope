@@ -1782,44 +1782,15 @@ public class EzSystemController {
 	@RequestMapping(value = "/salvarProduto", method = RequestMethod.POST)
 	public ModelAndView salvarProduto(ProdutoTO produto, ModelAndView model) {
 
-		JdbcManager dataBaseTools = new JdbcManager();
+		produtoFacade.saveProduct(produto);
 
-		try {
+		String insertResultModelAttribute = insertResult;
 
-			insertResult = dataBaseTools
-					.insertJdbc("INSERT INTO public.produto (`tipo`," + " `nomeProduto`, `Marca`, `cor`, "
-							+ "`quantidade`, `valor`, `codigoProduto`, `dataInclusao`) VALUES ('" + produto.getTipo()
-							+ "','" + produto.getNomeProduto() + "','" + produto.getMarca() + "','" + produto.getCor()
-							+ "','" + produto.getQuantidade() + "','" + produto.getValor() + "','"
-							+ produto.getCodigoProduto() + "', NOW())");
+		model = new ModelAndView("gerenciarProdutos", "command", new ProdutoTO());
 
-			if (insertResult.equals("1")) {
-				String insertResultModelAttribute = insertResult;
-
-				model = new ModelAndView("gerenciarProdutos", "command", new ProdutoTO());
-
-				model.addObject("insertResult", insertResultModelAttribute);
-				insertResult = "";
-				return model;
-			} else {
-				String insertResultModelAttribute = insertResult;
-
-				model = new ModelAndView("gerenciarProdutos", "command", new ProdutoTO());
-
-				model.addObject("insertResult", insertResultModelAttribute);
-				insertResult = "";
-				return model;
-			}
-		} catch (Exception e) {
-
-			String insertResultModelAttribute = insertResult;
-
-			model = new ModelAndView("gerenciarProdutos", "command", new ProdutoTO());
-
-			model.addObject("insertResult", insertResultModelAttribute);
-			insertResult = "";
-			return model;
-		}
+		model.addObject("insertResult", insertResultModelAttribute);
+		insertResult = "";
+		return model;
 	}
 
 	// busca para editar

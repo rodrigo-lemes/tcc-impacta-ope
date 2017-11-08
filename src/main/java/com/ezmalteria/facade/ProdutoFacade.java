@@ -20,5 +20,9 @@ public class ProdutoFacade {
 
 		return productsList;
 	}
+	
+	public void saveProduct(ProdutoTO produtoData){
+		pdao.save(produtoData);
+	}
 
 }
