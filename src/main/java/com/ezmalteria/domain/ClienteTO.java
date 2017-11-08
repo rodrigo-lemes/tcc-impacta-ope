@@ -2,6 +2,8 @@ package com.ezmalteria.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -11,7 +13,8 @@ import javax.persistence.Transient;
 public class ClienteTO {
 
 	@Id
-	@Column(name="idcliente")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="idcliente",unique=true, nullable = false)
 	private String idCliente;
 	@Column(name="nome")
 	private String nome;
