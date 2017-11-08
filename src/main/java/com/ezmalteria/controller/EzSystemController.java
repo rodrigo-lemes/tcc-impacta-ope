@@ -1833,11 +1833,6 @@ public class EzSystemController {
 				produto.setQuantidade(dadosEditarProduto.getString("quantidade"));
 				produto.setValor(dadosEditarProduto.getString("valor"));
 				produto.setCodigoProduto(dadosEditarProduto.getString("codigoProduto"));
-				produto.setDataInclusao(dateTools.converterDataUsParaBr(dadosEditarProduto.getString("dataInclusao")));
-
-				System.out.println(produto.getNomeProduto() + "," + produto.getTipo() + "," + produto.getMarca() + ","
-						+ produto.getCor() + "," + produto.getQuantidade() + "," + produto.getValor() + ","
-						+ produto.getCodigoProduto() + "," + produto.getDataInclusao());
 
 			}
 		} catch (SQLException e) {
