@@ -23,4 +23,8 @@ public class DespesaFacade {
 		return funcionarioMetadata;
 	}
 
+	public void saveExpense(DespesasTO despesa) {
+		ddao.save(despesa);
+	}
+
 }
