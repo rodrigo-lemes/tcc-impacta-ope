@@ -648,7 +648,7 @@ public class EzSystemController {
 				cliente.setTelCel(clientes.getString("celular"));
 				cliente.setSexo(clientes.getString("sexo"));
 				cliente.setNascimento(clientes.getString("dataNascimento"));
-				cliente.setDataInclusao(dateTool.converterDataUsParaBr(clientes.getString("dataInclusao")));
+	//			cliente.setDataInclusao(dateTool.converterDataUsParaBr(clientes.getString("dataInclusao")));
 
 				listaClientes.add(cliente);
 
