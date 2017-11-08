@@ -30,12 +30,13 @@ public class ClienteTO {
 	private String sexo;
 	@Column(name="cpf")
 	private String cpf;
+	/*
 	@Column(name="datainclusao")
 	private String dataInclusao;
 	@Column(name="dataalteracao")
 	private String dataAlteracao;
 	@Column(name="dataexclusao")
-	private String dataExclusao;
+	private String dataExclusao;*/
 	
 	@Transient
 	private String dataPesquisaInicio;
@@ -83,7 +84,7 @@ public class ClienteTO {
 		this.email = email;
 	}
 
-	public String getDataAlteracao() {
+/*	public String getDataAlteracao() {
 		return dataAlteracao;
 	}
 
@@ -107,7 +108,7 @@ public class ClienteTO {
 		this.dataExclusao = dataExclusao;
 	}
 
-	
+	*/
 
 	public String getTelRes() {
 		return telRes;
