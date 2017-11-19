@@ -13,7 +13,7 @@ import com.ezmalteria.domain.ProdutoTO;
 @Repository
 public interface ProdutoDao extends CrudRepository<ProdutoTO, Long> {
 
-	@Query(NamedQueriesConstants.GET_LOW_STOCK_PRODUCTS)
+	@Query(NamedQueriesConstants.GET_LOW_STOCK_PRODUCTS_QUERY)
 	public List<ProdutoTO> findAllLowStockProducts(
 			@Param(NamedQueriesConstants.GET_LOW_STOCK_PRODUCTS_QUANTITY_FIELD_PARAMETER_NAMING) String quantity);
 }
