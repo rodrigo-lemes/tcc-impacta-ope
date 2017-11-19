@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ezmalteria.dao.DespesaDao;
-import com.ezmalteria.dao.FuncionarioDao;
 import com.ezmalteria.domain.DespesasTO;
-import com.ezmalteria.domain.FuncionarioTO;
 
 @Service
 public class DespesaFacade {
