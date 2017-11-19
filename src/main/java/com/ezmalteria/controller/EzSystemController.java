@@ -167,7 +167,7 @@ public class EzSystemController {
 			loginCheckedContext = "LOGADO";
 		}
 
-		List<ProdutoTO> listaProdutosAcabando = produtoFacade.getLowStockProducts(5);
+		List<ProdutoTO> listaProdutosAcabando = produtoFacade.getLowStockProducts("5");
 		/*List<ProdutoTO> listaProdutosAcabando = produtoFacade.getAllProducts();
 
 		if (null != listaProdutosAcabando) {
