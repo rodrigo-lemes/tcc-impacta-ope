@@ -12,7 +12,7 @@ import com.ezmalteria.domain.ProdutoTO;
 @Repository
 public interface ProdutoDao extends CrudRepository<ProdutoTO, Long> {
 
-	@Query("SELECT p FROM produto p WHERE p.quantidade >= :quantity")
+	@Query("SELECT p FROM produto p WHERE p.quantidade > :quantity")
 	public List<ProdutoTO> findAllLowStockProducts(@Param("quantity") String quantity);
 	
 }
