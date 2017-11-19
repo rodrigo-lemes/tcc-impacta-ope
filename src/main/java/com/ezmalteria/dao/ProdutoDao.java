@@ -1,6 +1,10 @@
 package com.ezmalteria.dao;
 
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.ezmalteria.domain.ProdutoTO;
@@ -8,4 +12,7 @@ import com.ezmalteria.domain.ProdutoTO;
 @Repository
 public interface ProdutoDao extends CrudRepository<ProdutoTO, Long> {
 
+	@Query("from produto p where p.quantidade<:quantity")
+	public List<ProdutoTO> findAllLowStockProducts(@Param("quantity") Integer quantity);
+	
 }

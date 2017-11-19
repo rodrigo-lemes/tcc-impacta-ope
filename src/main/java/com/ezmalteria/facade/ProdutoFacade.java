@@ -16,9 +16,11 @@ public class ProdutoFacade {
 
 	public List<ProdutoTO> getAllProducts() {
 
-		List<ProdutoTO> productsList = (List<ProdutoTO>) pdao.findAll();
-
-		return productsList;
+		return (List<ProdutoTO>) pdao.findAll();
+	}
+	
+	public List<ProdutoTO> getLowStockProducts(Integer quantity){
+		return (List<ProdutoTO>) pdao.findAllLowStockProducts(quantity);
 	}
 	
 	public void saveProduct(ProdutoTO produtoData){

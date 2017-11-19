@@ -167,8 +167,8 @@ public class EzSystemController {
 			loginCheckedContext = "LOGADO";
 		}
 
-		List<ProdutoTO> listaProdutosAcabando = produtoFacade.getAllProducts();
-
+		List<ProdutoTO> listaProdutosAcabando = produtoFacade.getLowStockProducts(5);
+/*
 		if (null != listaProdutosAcabando) {
 			for (int index = 0; index < listaProdutosAcabando.size(); index++) {
 				if (Integer.parseInt(listaProdutosAcabando.get(index).getQuantidade()) > 5) {
@@ -176,7 +176,7 @@ public class EzSystemController {
 				}
 			}
 		}
-
+*/
 		List<AgendamentoTO> listaAgendamentos = agendamentoFacade.getAllDatings();
 
 		try {
