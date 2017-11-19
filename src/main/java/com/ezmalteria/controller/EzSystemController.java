@@ -86,76 +86,6 @@ public class EzSystemController {
 		return new ModelAndView("login", "command", new FuncionarioTO());
 	}
 
-	// pagina inicial que nao checa o login
-	@RequestMapping(value = "/index")
-	public ModelAndView index(AgendamentoTO agendamento, ModelAndView model) {
-
-		JdbcManager dataBaseTools = new JdbcManager();
-
-		ResultSet produtos = dataBaseTools.selectJdbc("SELECT * FROM public.produto WHERE quantidade < 4");
-
-		ArrayList<ProdutoTO> listaProdutosAcabando = new ArrayList<ProdutoTO>();
-
-		try {
-			while (produtos.next()) {
-				ProdutoTO produtoAcabando = new ProdutoTO();
-
-				produtoAcabando.setNomeProduto(produtos.getString("nomeProduto"));
-				produtoAcabando.setMarca(produtos.getString("Marca"));
-				produtoAcabando.setCor(produtos.getString("cor"));
-				produtoAcabando.setCodigoProduto(produtos.getString("codigoProduto"));
-				produtoAcabando.setQuantidade(produtos.getString("quantidade"));
-
-				listaProdutosAcabando.add(produtoAcabando);
-
-			}
-
-		} catch (SQLException e) {
-
-			log.gravarLog(e.toString());
-		}
-
-		ResultSet agendamentos = dataBaseTools
-				.selectJdbc("SELECT * FROM public.AgendamentoTeste WHERE data = CURRENT_DATE() ORDER BY hora;");
-
-		ArrayList<AgendamentoTO> listaAgendamentos = new ArrayList<AgendamentoTO>();
-
-		ConversorDatas dateTool = new ConversorDatas();
-
-		try {
-			while (agendamentos.next()) {
-				agendamento = new AgendamentoTO();
-
-				agendamento.setData(dateTool.converterDataUsParaBr(agendamentos.getString("data")));
-				agendamento.setCliente(agendamentos.getString("cliente"));
-				agendamento.setFuncionario(agendamentos.getString("funcionario"));
-				agendamento.setHora(agendamentos.getString("hora"));
-				agendamento.setServico(agendamentos.getString("servico"));
-				agendamento.setIdAgendamento(agendamentos.getString("idAgendamento"));
-
-				listaAgendamentos.add(agendamento);
-
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		if (!loginCheckedContext.equals("erroLogin")) {
-
-			model = new ModelAndView("index", "command", new AgendamentoTO());
-
-			model.addObject("listaProdutosAcabando", listaProdutosAcabando);
-			model.addObject("listaAgendamentos", listaAgendamentos);
-
-			return model;
-
-		} else {
-			return new ModelAndView("erroLogin");
-		}
-
-	}
-
 	@RequestMapping(value = "/home", method = RequestMethod.POST)
 	public ModelAndView inicio(final FuncionarioTO usuario, @ModelAttribute("command") AgendamentoTO agendamento) {
 
@@ -168,6 +98,8 @@ public class EzSystemController {
 		}
 
 		List<ProdutoTO> listaProdutosAcabando = produtoFacade.getLowStockProducts("5");
+		
+		System.out.println("############\n\nDEBUG:\n\n FOUND "+listaProdutosAcabando.size()+" products");
 	
 		List<AgendamentoTO> listaAgendamentos = agendamentoFacade.getAllDatings();
 
