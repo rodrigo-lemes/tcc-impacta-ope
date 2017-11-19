@@ -168,7 +168,8 @@ public class EzSystemController {
 		}
 
 		List<ProdutoTO> listaProdutosAcabando = produtoFacade.getLowStockProducts(5);
-/*
+		/*List<ProdutoTO> listaProdutosAcabando = produtoFacade.getAllProducts();
+
 		if (null != listaProdutosAcabando) {
 			for (int index = 0; index < listaProdutosAcabando.size(); index++) {
 				if (Integer.parseInt(listaProdutosAcabando.get(index).getQuantidade()) > 5) {
