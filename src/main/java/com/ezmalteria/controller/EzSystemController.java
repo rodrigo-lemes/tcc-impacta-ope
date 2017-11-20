@@ -357,7 +357,7 @@ public class EzSystemController {
 		model.addObject("insertResult", insertResultModelAttribute);
 
 		insertResult = "";
-		return new ModelAndView(loginCheckedContext, "command", null);
+		return new ModelAndView("index", "command", null);
 	}
 
 	// busca para editar
