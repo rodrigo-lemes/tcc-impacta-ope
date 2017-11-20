@@ -29,7 +29,7 @@ public class ProdutoTO {
 	@Column(name = "cor")
 	private String cor;
 	@Column(name = "quantidade")
-	private String quantidade;
+	private Long quantidade;
 	@Column(name = "valor")
 	private String valor;
 	@Column(name = "codigoproduto")
@@ -104,11 +104,11 @@ public class ProdutoTO {
 		this.cor = cor;
 	}
 
-	public String getQuantidade() {
+	public Long getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(String quantidade) {
+	public void setQuantidade(Long quantidade) {
 		this.quantidade = quantidade;
 	}
 

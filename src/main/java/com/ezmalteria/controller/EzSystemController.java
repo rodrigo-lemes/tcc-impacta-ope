@@ -1727,7 +1727,7 @@ public class EzSystemController {
 				produto.setTipo(dadosEditarProduto.getString("tipo"));
 				produto.setMarca(dadosEditarProduto.getString("Marca"));
 				produto.setCor(dadosEditarProduto.getString("cor"));
-				produto.setQuantidade(dadosEditarProduto.getString("quantidade"));
+				produto.setQuantidade(dadosEditarProduto.getLong("quantidade"));
 				produto.setValor(dadosEditarProduto.getString("valor"));
 				produto.setCodigoProduto(dadosEditarProduto.getString("codigoProduto"));
 
@@ -1836,7 +1836,7 @@ public class EzSystemController {
 				produto.setMarca(produtos.getString("Marca"));
 				produto.setCor(produtos.getString("cor"));
 				produto.setCodigoProduto(produtos.getString("codigoProduto"));
-				produto.setQuantidade(produtos.getString("quantidade"));
+				produto.setQuantidade(produtos.getLong("quantidade"));
 				produto.setValor(produtos.getString("valor"));
 				listaProdutos.add(produto);
 
