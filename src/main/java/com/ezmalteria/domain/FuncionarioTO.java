@@ -55,7 +55,7 @@ public class FuncionarioTO {
 	@Column(name="dataalteracao")
 	private Date dataAlteracao;
 	@Column(name="dataexclusao")
-	private String dataExclusao;
+	private Date dataExclusao;
 	@Column(name="sexo")
 	private String sexo;
 	@Column(name="codigofuncionario")
@@ -229,11 +229,11 @@ public class FuncionarioTO {
 		this.dataAlteracao = dataAlteracao;
 	}
 
-	public String getDataExclusao() {
+	public Date getDataExclusao() {
 		return dataExclusao;
 	}
 
-	public void setDataExclusao(String dataExclusao) {
+	public void setDataExclusao(Date dataExclusao) {
 		this.dataExclusao = dataExclusao;
 	}
 
