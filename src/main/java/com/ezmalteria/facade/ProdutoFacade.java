@@ -19,7 +19,7 @@ public class ProdutoFacade {
 		return (List<ProdutoTO>) pdao.findAll();
 	}
 	
-	public List<ProdutoTO> getLowStockProducts(String quantity){
+	public List<ProdutoTO> getLowStockProducts(Long quantity){
 		return (List<ProdutoTO>) pdao.findAllLowStockProducts(quantity);
 	}
 	
