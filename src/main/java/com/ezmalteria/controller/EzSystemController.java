@@ -357,7 +357,7 @@ public class EzSystemController {
 		model.addObject("insertResult", insertResultModelAttribute);
 
 		insertResult = "";
-		return new ModelAndView("index");
+		return new ModelAndView("gerenciarClientes", "command", new ClienteTO());
 	}
 
 	// busca para editar
