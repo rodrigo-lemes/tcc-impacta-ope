@@ -11,69 +11,69 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name="funcionario")
+@Table(name = "funcionario")
 public class FuncionarioTO {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="idfuncionario",unique=true, nullable = false)
+	@Column(name = "idfuncionario", unique = true, nullable = false)
 	private String idFuncionario;
-	@Column(name="nome")
+	@Column(name = "nome")
 	private String nome;
-	@Column(name="estadocivil")
+	@Column(name = "estadocivil")
 	private String estadoCivil;
-	@Column(name="rg")
+	@Column(name = "rg")
 	private String rg;
-	@Column(name="cpf")
+	@Column(name = "cpf")
 	private String cpf;
-	@Column(name="datanascimento")
+	@Column(name = "datanascimento")
 	private String nascimento;
-	@Column(name="telefone")
+	@Column(name = "telefone")
 	private String telRes;
-	@Column(name="celular")
+	@Column(name = "celular")
 	private String telCel;
-	@Column(name="logradouro")
+	@Column(name = "logradouro")
 	private String logradouro;
-	@Column(name="numero")
+	@Column(name = "numero")
 	private String numero;
-	@Column(name="bairro")
+	@Column(name = "bairro")
 	private String bairro;
-	@Column(name="cidade")
+	@Column(name = "cidade")
 	private String cidade;
-	@Column(name="uf")
+	@Column(name = "uf")
 	private String uf;
-	@Column(name="cep")
+	@Column(name = "cep")
 	private String cep;
-	@Column(name="complemento")
+	@Column(name = "complemento")
 	private String complemento;
-	@Column(name="tipofuncionario")
+	@Column(name = "tipofuncionario")
 	private String tipoFuncionario;
-	@Column(name="carteiratrabalho")
+	@Column(name = "carteiratrabalho")
 	private String carteiraTrabalho;
-	@Column(name="datainclusao")
+	@Column(name = "datainclusao")
 	private Date dataInclusao;
-	@Column(name="dataalteracao")
+	@Column(name = "dataalteracao")
 	private Date dataAlteracao;
-	@Column(name="dataexclusao")
+	@Column(name = "dataexclusao")
 	private Date dataExclusao;
-	@Column(name="sexo")
+	@Column(name = "sexo")
 	private String sexo;
-	@Column(name="codigofuncionario")
+	@Column(name = "codigofuncionario")
 	private String codFunc;
-	@Column(name="statusfuncionario")
-	private String estado;
-	@Column(name="salario")
+	@Column(name = "statusfuncionario")
+	private Integer estado;
+	@Column(name = "salario")
 	private String salarioFixo;
-	@Column(name="email")
+	@Column(name = "email")
 	private String email;
-	@Column(name="senha")
+	@Column(name = "senha")
 	private String senha;
-	@Column(name="perfil")
+	@Column(name = "perfil")
 	private String perfil;
-	
+
 	@Transient
 	private String dataPesquisaInicio;
-	
+
 	@Transient
 	private String dataPesquisaFim;
 
@@ -301,23 +301,13 @@ public class FuncionarioTO {
 		this.dataPesquisaFim = dataPesquisaFim;
 	}
 
-	public String getEstado() {
+	public Integer getEstado() {
 		return estado;
 	}
 
-	public void setEstado(String estado) {
+	public void setEstado(Integer estado) {
 
-		if (estado.equals("1")) {
-			this.estado = "Ativo";
-		} else if (estado.equals("0")) {
-			this.estado = "Inativo";
-		} else if (estado.toLowerCase().equals("ativo")) {
-			this.estado = "1";
-		} else {
-			this.estado = "0";
-		}
-
-		System.out.println("Setted Status: " + this.estado);
+		this.estado = estado;
 	}
 
 }

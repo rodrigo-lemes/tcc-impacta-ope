@@ -679,7 +679,7 @@ public class EzSystemController {
 				funcionario.setDataInclusao(dadosEditarFuncionario.getDate("dataInclusao"));
 				funcionario.setSexo(dadosEditarFuncionario.getString("sexo"));
 				funcionario.setCodFunc(dadosEditarFuncionario.getString("codigoFuncionario"));
-				funcionario.setEstado(dadosEditarFuncionario.getString("statusFuncionario"));
+				funcionario.setEstado(dadosEditarFuncionario.getInt("statusFuncionario"));
 				funcionario.setSalarioFixo(dadosEditarFuncionario.getString("salario"));
 				funcionario.setEmail(dadosEditarFuncionario.getString("email"));
 				funcionario.setSenha(dadosEditarFuncionario.getString("senha"));
@@ -843,7 +843,7 @@ public class EzSystemController {
 				funcionario.setTelCel(funcionarios.getString("celular"));
 				funcionario.setTipoFuncionario(funcionarios.getString("tipoFuncionario"));
 				funcionario.setCodFunc(funcionarios.getString("codigoFuncionario"));
-				funcionario.setEstado(funcionarios.getString("statusFuncionario"));
+				funcionario.setEstado(funcionarios.getInt("statusFuncionario"));
 
 				funcionario.setDataInclusao(funcionarios.getDate("dataInclusao"));
 
