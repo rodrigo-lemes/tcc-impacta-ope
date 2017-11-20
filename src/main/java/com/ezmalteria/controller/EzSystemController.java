@@ -595,10 +595,7 @@ public class EzSystemController {
 		}
 	}
 
-	// Fim cliente
-
-	// Funcionario
-	// Cadastro
+	
 	@RequestMapping(value = "/gerenciarFuncionarios", method = RequestMethod.GET)
 	public ModelAndView funcionario() {
 
@@ -625,7 +622,6 @@ public class EzSystemController {
 
 		model = new ModelAndView("gerenciarFuncionarios", "command", new FuncionarioTO());
 		model.addObject("insertResult", insertResultModelAttribute);
-		insertResult = "";
 		return model;
 
 	}
