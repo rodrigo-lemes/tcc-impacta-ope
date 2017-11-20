@@ -15,5 +15,5 @@ public interface ProdutoDao extends CrudRepository<ProdutoTO, Long> {
 
 	@Query(value = QueriesConstants.GET_LOW_STOCK_PRODUCTS_QUERY,nativeQuery = true)
 	public List<ProdutoTO> findAllLowStockProducts(
-			@Param(QueriesConstants.GET_LOW_STOCK_PRODUCTS_QUANTITY_WHERE_FILTER_FIELD) String quantity);
+			/*@Param(QueriesConstants.GET_LOW_STOCK_PRODUCTS_QUANTITY_WHERE_FILTER_FIELD) String quantity*/);
 }
