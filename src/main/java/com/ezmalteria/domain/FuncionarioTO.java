@@ -48,12 +48,12 @@ public class FuncionarioTO {
 	private String tipoFuncionario;
 	@Column(name="carteiratrabalho")
 	private String carteiraTrabalho;
-	/*@Column(name="datainclusao")
+	@Column(name="datainclusao")
 	private String dataInclusao;
 	@Column(name="dataalteracao")
 	private String dataAlteracao;
 	@Column(name="dataexclusao")
-	private String dataExclusao;*/
+	private String dataExclusao;
 	@Column(name="sexo")
 	private String sexo;
 	@Column(name="codigofuncionario")
@@ -211,7 +211,7 @@ public class FuncionarioTO {
 		this.carteiraTrabalho = carteiraTrabalho;
 	}
 
-	/*public String getDataInclusao() {
+	public String getDataInclusao() {
 		return dataInclusao;
 	}
 
@@ -233,7 +233,7 @@ public class FuncionarioTO {
 
 	public void setDataExclusao(String dataExclusao) {
 		this.dataExclusao = dataExclusao;
-	}*/
+	}
 
 	public String getSexo() {
 		return sexo;
