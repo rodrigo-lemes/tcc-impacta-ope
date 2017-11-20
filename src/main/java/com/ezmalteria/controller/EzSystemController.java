@@ -676,8 +676,7 @@ public class EzSystemController {
 				funcionario.setComplemento(dadosEditarFuncionario.getString("complemento"));
 				funcionario.setTipoFuncionario(dadosEditarFuncionario.getString("tipoFuncionario"));
 				funcionario.setCarteiraTrabalho(dadosEditarFuncionario.getString("carteiraTrabalho"));
-				funcionario.setDataInclusao(
-						dateTools.converterDataUsParaBr(dadosEditarFuncionario.getString("dataInclusao")));
+				funcionario.setDataInclusao(dadosEditarFuncionario.getDate("dataInclusao"));
 				funcionario.setSexo(dadosEditarFuncionario.getString("sexo"));
 				funcionario.setCodFunc(dadosEditarFuncionario.getString("codigoFuncionario"));
 				funcionario.setEstado(dadosEditarFuncionario.getString("statusFuncionario"));
@@ -686,17 +685,6 @@ public class EzSystemController {
 				funcionario.setSenha(dadosEditarFuncionario.getString("senha"));
 				funcionario.setPerfil(dadosEditarFuncionario.getString("perfil"));
 
-				System.out.println(funcionario.getNome() + "," + funcionario.getEstadoCivil() + ","
-						+ funcionario.getRg() + "," + funcionario.getCpf() + "," + funcionario.getNascimento() + ","
-						+ funcionario.getTelRes() + "," + funcionario.getTelCel() + "," + funcionario.getLogradouro()
-						+ "," + funcionario.getNumero() + "," + funcionario.getBairro() + "," + funcionario.getCidade()
-						+ "," + funcionario.getUf() + "," + funcionario.getCep() + "," + funcionario.getComplemento()
-						+ "," + funcionario.getTipoFuncionario() + "," + funcionario.getCarteiraTrabalho() + ","
-						+ funcionario.getDataInclusao() + "," + funcionario.getSexo() + "," + funcionario.getCodFunc()
-						+ "," + funcionario.getEstado() + "," + funcionario.getSalarioFixo() + ","
-						+ funcionario.getEmail() + "," + funcionario.getSenha() + "," + funcionario.getPerfil()
-
-				);
 
 			}
 		} catch (SQLException e) {
@@ -756,7 +744,7 @@ public class EzSystemController {
 					+ funcionario.getComplemento() + "', `tipoFuncionario`='" + funcionario.getTipoFuncionario()
 					+ "', `carteiraTrabalho`='" + funcionario.getCarteiraTrabalho() + "', `statusFuncionario`='"
 					+ funcionario.getEstado() + "', `dataInclusao`='"
-					+ dateTool.converterDataBrParaUS(funcionario.getDataInclusao()) + "', `codigoFuncionario`='"
+					//+ dateTool.converterDataBrParaUS(funcionario.getDataInclusao()) + "', `codigoFuncionario`='"
 					+ funcionario.getCodFunc() + "', `salario`='" + funcionario.getSalarioFixo() + "', `email`='"
 					+ funcionario.getEmail() + "', `senha`='" + funcionario.getSenha() + "', `perfil`='"
 					+ funcionario.getPerfil() + "', `dataAlteracao`=NOW()" + ", `sexo`='" + funcionario.getSexo()
@@ -857,7 +845,7 @@ public class EzSystemController {
 				funcionario.setCodFunc(funcionarios.getString("codigoFuncionario"));
 				funcionario.setEstado(funcionarios.getString("statusFuncionario"));
 
-				funcionario.setDataInclusao(dateTool.converterDataUsParaBr(funcionarios.getString("dataInclusao")));
+				funcionario.setDataInclusao(funcionarios.getDate("dataInclusao"));
 
 				funcionario.setDataPesquisaInicio(inicio);
 				funcionario.setDataPesquisaFim(fim);

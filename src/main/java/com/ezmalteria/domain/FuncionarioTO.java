@@ -1,5 +1,7 @@
 package com.ezmalteria.domain;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -49,7 +51,7 @@ public class FuncionarioTO {
 	@Column(name="carteiratrabalho")
 	private String carteiraTrabalho;
 	@Column(name="datainclusao")
-	private String dataInclusao;
+	private Date dataInclusao;
 	@Column(name="dataalteracao")
 	private String dataAlteracao;
 	@Column(name="dataexclusao")
@@ -211,11 +213,11 @@ public class FuncionarioTO {
 		this.carteiraTrabalho = carteiraTrabalho;
 	}
 
-	public String getDataInclusao() {
+	public Date getDataInclusao() {
 		return dataInclusao;
 	}
 
-	public void setDataInclusao(String dataInclusao) {
+	public void setDataInclusao(Date dataInclusao) {
 		this.dataInclusao = dataInclusao;
 	}
 
