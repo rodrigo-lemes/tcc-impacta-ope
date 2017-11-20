@@ -74,9 +74,7 @@ public class EzSystemController {
 	String codigoEmDespesaSendoEditado = "";
 	String codigoDeServicoPrestadoSendoEditado = "";
 	String insertResult = "";
-	/* inicio processo de login */
 
-	// Erro ao tentar acessar pg sem estar logado
 	String loginCheckedContext = "erroLogin";
 
 	// mapeamento para o pagina de Login
@@ -97,10 +95,8 @@ public class EzSystemController {
 			loginCheckedContext = "LOGADO";
 		}
 
-		List<ProdutoTO> listaProdutosAcabando = produtoFacade.getLowStockProducts(5L);
+		List<ProdutoTO> listaProdutosAcabando = produtoFacade.getLowStockProducts(10L);
 		
-		System.out.println("############\n\nDEBUG:\n\n FOUND "+listaProdutosAcabando.size()+" products");
-	
 		List<AgendamentoTO> listaAgendamentos = agendamentoFacade.getAllDatings();
 
 		try {
