@@ -617,7 +617,7 @@ public class EzSystemController {
 	public ModelAndView salvarFuncionario(FuncionarioTO funcionario, ModelAndView model) throws Exception{
 
 		
-		System.out.println(funcionario.getBairro());
+		/*System.out.println(funcionario.getBairro());
 		System.out.println(funcionario.getCodFunc());
 		System.out.println(funcionario.getCidade());
 		System.out.println(funcionario.getCep());
@@ -635,7 +635,9 @@ public class EzSystemController {
 
 		model = new ModelAndView("gerenciarFuncionarios", "command", new FuncionarioTO());
 		model.addObject("insertResult", insertResultModelAttribute);
-		return model;
+		return model;*/
+		
+		return new ModelAndView("gerenciarFuncionarios", "command", new FuncionarioTO());
 
 	}
 
