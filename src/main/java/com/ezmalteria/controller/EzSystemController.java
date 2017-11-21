@@ -616,12 +616,20 @@ public class EzSystemController {
 	@RequestMapping(value = "/salvarFuncionarioCadastrado", method = RequestMethod.POST)
 	public ModelAndView salvarFuncionario(FuncionarioTO funcionario, ModelAndView model) {
 
-		funcionarioFacade.saveFuncionario(funcionario);
 		
 		System.out.println(funcionario.getBairro());
 		System.out.println(funcionario.getCodFunc());
 		System.out.println(funcionario.getCidade());
 		System.out.println(funcionario.getCep());
+		
+		try {
+		
+		funcionarioFacade.saveFuncionario(funcionario);
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
 
 		String insertResultModelAttribute = insertResult;
 
