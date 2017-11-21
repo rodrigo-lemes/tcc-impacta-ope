@@ -607,7 +607,7 @@ public class EzSystemController {
 	}
 
 	// Salvar cadastro
-	/*@RequestMapping(value = "/salvarFuncionarioCadastrado", method = RequestMethod.POST)
+	@RequestMapping(value = "/salvarFuncionarioCadastrado", method = RequestMethod.POST)
 	public ModelAndView salvarFuncionario(FuncionarioTO funcionario, ModelAndView model) throws Exception{
 
 		
@@ -633,18 +633,8 @@ public class EzSystemController {
 		
 		//return new ModelAndView("gerenciarFuncionarios", "command", funcionario);
 
-	}*/
-
-	
-	@RequestMapping(value = "/salvarFuncionarioCadastrado", method = RequestMethod.POST)
-	public String salvarFuncionario(FuncionarioTO funcionario, ModelAndView model){
-
-		
-		return "gerenciarFuncionarios";
-		
-		//return new ModelAndView("gerenciarFuncionarios", "command", funcionario);
-
 	}
+
 	
 	
 	// busca para editar

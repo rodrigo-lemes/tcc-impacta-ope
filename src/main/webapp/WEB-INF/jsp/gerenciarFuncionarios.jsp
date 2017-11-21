@@ -139,8 +139,8 @@
 										<form:input path="codFunc" class="form-control" id="inputCodFunc" required="required"/></td>
 										<td id="tdtwo"><form:label path="estado">Estado</form:label>
 										<form:select path="estado" class="form-control">
-											<form:option value="ativo">Ativo</form:option>
-											<form:option value="inativo">Inativo</form:option>
+											<form:option value="1">Ativo</form:option>
+											<form:option value="0">Inativo</form:option>
 										</form:select></td>
 									</tr></table>
 									</tr>
