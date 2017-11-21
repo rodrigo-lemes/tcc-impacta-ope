@@ -637,7 +637,7 @@ public class EzSystemController {
 		model.addObject("insertResult", insertResultModelAttribute);
 		return model;*/
 		
-		return new ModelAndView("gerenciarFuncionarios", "command", new FuncionarioTO());
+		return new ModelAndView("gerenciarFuncionarios", "command", funcionario);
 
 	}
 
