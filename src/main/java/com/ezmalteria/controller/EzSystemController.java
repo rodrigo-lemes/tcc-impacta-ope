@@ -617,6 +617,11 @@ public class EzSystemController {
 	public ModelAndView salvarFuncionario(FuncionarioTO funcionario, ModelAndView model) {
 
 		funcionarioFacade.saveFuncionario(funcionario);
+		
+		System.out.println(funcionario.getBairro());
+		System.out.println(funcionario.getCodFunc());
+		System.out.println(funcionario.getCidade());
+		System.out.println(funcionario.getCep());
 
 		String insertResultModelAttribute = insertResult;
 
