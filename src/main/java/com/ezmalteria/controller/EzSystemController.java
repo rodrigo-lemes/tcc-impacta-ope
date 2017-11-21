@@ -326,10 +326,7 @@ public class EzSystemController {
 
 	}
 
-	// Fim agendamento
-
-	// Clientes
-	// Cadastro
+	
 	@RequestMapping(value = "/gerenciarClientes", method = RequestMethod.GET)
 	public ModelAndView clientes() {
 
@@ -599,16 +596,13 @@ public class EzSystemController {
 	@RequestMapping(value = "/gerenciarFuncionarios", method = RequestMethod.GET)
 	public ModelAndView funcionario() {
 
-		if (!loginCheckedContext.equals("erroLogin")) {
 			if (funcionarioLoaded.getPerfil().equalsIgnoreCase("adm") && funcionarioLoaded.getEstado().equals(1)) {
 
 				return new ModelAndView("gerenciarFuncionarios", "command", new FuncionarioTO());
+				
 			} else {
 				return new ModelAndView("acessoRestrito");
 			}
-		} else {
-			return new ModelAndView(loginCheckedContext, "command", null);
-		}
 
 	}
 
@@ -643,7 +637,7 @@ public class EzSystemController {
 
 	
 	@RequestMapping(value = "/salvarFuncionarioCadastrado", method = RequestMethod.POST)
-	public String salvarFuncionario(FuncionarioTO funcionario, Model model) throws Exception{
+	public String salvarFuncionario(FuncionarioTO funcionario, ModelAndView model){
 
 		
 		return "gerenciarFuncionarios";
