@@ -614,7 +614,7 @@ public class EzSystemController {
 
 	// Salvar cadastro
 	@RequestMapping(value = "/salvarFuncionarioCadastrado", method = RequestMethod.POST)
-	public ModelAndView salvarFuncionario(FuncionarioTO funcionario, ModelAndView model) {
+	public ModelAndView salvarFuncionario(FuncionarioTO funcionario, ModelAndView model) throws Exception{
 
 		
 		System.out.println(funcionario.getBairro());
