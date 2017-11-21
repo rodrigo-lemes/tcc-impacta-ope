@@ -613,7 +613,7 @@ public class EzSystemController {
 	}
 
 	// Salvar cadastro
-	@RequestMapping(value = "/salvarFuncionarioCadastrado", method = RequestMethod.POST)
+	@RequestMapping(value = "/salvarFuncionarioCadastrado"/*, method = RequestMethod.POST*/)
 	public ModelAndView salvarFuncionario(FuncionarioTO funcionario, ModelAndView model) throws Exception{
 
 		
