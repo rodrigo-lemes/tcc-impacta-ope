@@ -959,7 +959,7 @@ public class EzSystemController {
 				despesa.setDsDespesa(dadosEditarDespesa.getString("dsDespesa"));
 				despesa.setTipoDespesa(dadosEditarDespesa.getString("tipoDespesa"));
 				despesa.setValor(dadosEditarDespesa.getString("valor"));
-				despesa.setDataInclusao(dateTools.converterDataUsParaBr(dadosEditarDespesa.getString("dataInclusao")));
+				despesa.setDataInclusao(dadosEditarDespesa.getDate("dataInclusao"));
 				despesa.setCodigo(dadosEditarDespesa.getString("codigo"));
 
 				System.out.println(despesa.getDsDespesa());
@@ -992,11 +992,11 @@ public class EzSystemController {
 
 		try {
 
-			insertResult = dataBaseTools.updateJdbc("UPDATE public.despesa SET codigo='" + despesa.getCodigo()
+		/*	insertResult = dataBaseTools.updateJdbc("UPDATE public.despesa SET codigo='" + despesa.getCodigo()
 					+ "',tipoDespesa='" + despesa.getTipoDespesa() + "',dsDespesa= '" + despesa.getDsDespesa()
 					+ "',valor= '" + despesa.getValor() + "',dataInclusao= '"
 					+ dateTool.converterDataBrParaUS(despesa.getDataInclusao()) + "' WHERE codigo='"
-					+ codigoEmDespesaSendoEditado + "'");
+					+ codigoEmDespesaSendoEditado + "'");*/
 
 			if (insertResult.equals("1")) {
 				model = new ModelAndView("formularioDeEdicaoDespesa", "command", new DespesasTO());
@@ -1079,7 +1079,7 @@ public class EzSystemController {
 				despesa = new DespesasTO();
 
 				despesa.setTipoDespesa(despesas.getString("tipoDespesa"));
-				despesa.setDataInclusao(dateTool.converterDataUsParaBr(despesas.getString("dataInclusao")));
+				despesa.setDataInclusao(despesas.getDate("dataInclusao"));
 				despesa.setDsDespesa(despesas.getString("dsDespesa"));
 				despesa.setCodigo(despesas.getString("codigo"));
 				despesa.setValor(despesas.getString("valor"));
