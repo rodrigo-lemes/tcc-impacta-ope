@@ -17,7 +17,7 @@ public class DespesasTO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "iddespesa", unique = true, nullable = false)
-	private String idDespesa;
+	private Long idDespesa;
 	@Column(name = "")
 	private String codigo;
 	@Column(name = "tipodespesa")
@@ -94,11 +94,11 @@ public class DespesasTO {
 		this.dataBaixa = dataBaixa;
 	}
 
-	public String getIdDespesa() {
+	public Long getIdDespesa() {
 		return idDespesa;
 	}
 
-	public void setIdDespesa(String idDespesa) {
+	public void setIdDespesa(Long idDespesa) {
 		this.idDespesa = idDespesa;
 	}
 
