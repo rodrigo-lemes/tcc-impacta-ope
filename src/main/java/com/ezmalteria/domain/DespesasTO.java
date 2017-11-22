@@ -1,5 +1,7 @@
 package com.ezmalteria.domain;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,90 +11,109 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name="despesa")
+@Table(name = "despesa")
 public class DespesasTO {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="iddespesa",unique=true, nullable = false)
+	@Column(name = "iddespesa", unique = true, nullable = false)
 	private String idDespesa;
-	@Column(name="")
+	@Column(name = "")
 	private String codigo;
-	@Column(name="tipodespesa")
+	@Column(name = "tipodespesa")
 	private String tipoDespesa;
-	@Column(name="dsdespesa")
+	@Column(name = "dsdespesa")
 	private String dsDespesa;
-	@Column(name="valor")
+	@Column(name = "valor")
 	private String valor;
-	@Column(name="datainclusao")
-	private String dataInclusao;
-	@Column(name="dataalteracao")
-	private String dataAlteracao;
-	@Column(name="databaixa")
-	private String dataBaixa;
-	
+	@Column(name = "datainclusao")
+	private Date dataInclusao;
+	@Column(name = "dataalteracao")
+	private Date dataAlteracao;
+	@Column(name = "databaixa")
+	private Date dataBaixa;
+
 	@Transient
 	private String dataPesquisaInicio;
 	@Transient
 	private String dataPesquisaFim;
-	
+
 	public String getCodigo() {
 		return codigo;
 	}
+
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
+
 	public String getTipoDespesa() {
 		return tipoDespesa;
 	}
+
 	public void setTipoDespesa(String tipoDespesa) {
 		this.tipoDespesa = tipoDespesa;
 	}
+
 	public String getDsDespesa() {
 		return dsDespesa;
 	}
+
 	public void setDsDespesa(String dsDespesa) {
 		this.dsDespesa = dsDespesa;
 	}
+
 	public String getValor() {
 		return valor;
 	}
+
 	public void setValor(String valor) {
 		this.valor = valor;
 	}
-	public String getDataInclusao() {
+
+	public Date getDataInclusao() {
 		return dataInclusao;
 	}
-	public void setDataInclusao(String dataInclusao) {
+
+	public void setDataInclusao(Date dataInclusao) {
 		this.dataInclusao = dataInclusao;
 	}
-	public String getDataAlteracao() {
+
+	public Date getDataAlteracao() {
 		return dataAlteracao;
 	}
-	public void setDataAlteracao(String dataAlteracao) {
+
+	public void setDataAlteracao(Date dataAlteracao) {
 		this.dataAlteracao = dataAlteracao;
 	}
-	public String getDataBaixa() {
+
+	public Date getDataBaixa() {
 		return dataBaixa;
 	}
-	public void setDataBaixa(String dataBaixa) {
+
+	public void setDataBaixa(Date dataBaixa) {
 		this.dataBaixa = dataBaixa;
 	}
+
 	public String getIdDespesa() {
 		return idDespesa;
 	}
+
 	public void setIdDespesa(String idDespesa) {
 		this.idDespesa = idDespesa;
 	}
+
 	public String getDataPesquisaInicio() {
 		return dataPesquisaInicio;
 	}
+
 	public void setDataPesquisaInicio(String dataPesquisaInicio) {
 		this.dataPesquisaInicio = dataPesquisaInicio;
 	}
+
 	public String getDataPesquisaFim() {
 		return dataPesquisaFim;
 	}
+
 	public void setDataPesquisaFim(String dataPesquisaFim) {
 		this.dataPesquisaFim = dataPesquisaFim;
 	}
