@@ -18,7 +18,7 @@ public class DespesasTO {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "iddespesa", unique = true, nullable = false)
 	private Long idDespesa;
-	@Column(name = "")
+	@Column(name = "codigo")
 	private String codigo;
 	@Column(name = "tipodespesa")
 	private String tipoDespesa;
