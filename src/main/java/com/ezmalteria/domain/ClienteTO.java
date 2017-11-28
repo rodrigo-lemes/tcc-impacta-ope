@@ -34,9 +34,6 @@ public class ClienteTO {
 	private String dataInclusao;
 	@Transient
 	private String dataAlteracao;
-	@Column(name="dataexclusao")
-	private String dataExclusao;
-	
 	@Transient
 	private String dataPesquisaInicio;
 	@Transient
@@ -99,15 +96,7 @@ public class ClienteTO {
 		this.dataInclusao = dataInclusao;
 	}
 
-	public String getDataExclusao() {
-		return dataExclusao;
-	}
-
-	public void setDataExclusao(String dataExclusao) {
-		this.dataExclusao = dataExclusao;
-	}
-
-
+	
 	public String getTelRes() {
 		return telRes;
 	}
