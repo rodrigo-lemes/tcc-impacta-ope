@@ -27,7 +27,7 @@ public class FuncionarioTO {
 	@Column(name = "cpf")
 	private String cpf;
 	@Column(name = "datanascimento")
-	private String nascimento;
+	private Date nascimento;
 	@Column(name = "telefone")
 	private String telRes;
 	@Column(name = "celular")
@@ -117,11 +117,11 @@ public class FuncionarioTO {
 		this.cpf = cpf;
 	}
 
-	public String getNascimento() {
+	public Date getNascimento() {
 		return nascimento;
 	}
 
-	public void setNascimento(String nascimento) {
+	public void setNascimento(Date nascimento) {
 		this.nascimento = nascimento;
 	}
 
