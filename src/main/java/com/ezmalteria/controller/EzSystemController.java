@@ -747,7 +747,7 @@ public class EzSystemController {
 			insertResult = dataBaseTools.updateJdbc("UPDATE public.funcionario SET" + "	`nome`='"
 					+ funcionario.getNome() + "', `estadoCivil`='" + funcionario.getEstadoCivil() + "', `rg`='"
 					+ funcionario.getRg() + "', `cpf`='" + funcionario.getCpf() + "', `dataNascimento`='"
-					+ dateTool.converterDataBrParaUS(funcionario.getNascimento()) + "', `telefone`='"
+					//+ dateTool.converterDataBrParaUS(funcionario.getNascimento()) + "', `telefone`='"
 					+ funcionario.getTelRes() + "', `celular`='" + funcionario.getTelCel() + "', `logradouro`='"
 					+ funcionario.getLogradouro() + "', `numero`='" + funcionario.getNumero() + "', `bairro`='"
 					+ funcionario.getBairro() + "', `cidade`='" + funcionario.getCidade() + "', `uf`='"
