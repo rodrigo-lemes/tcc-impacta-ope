@@ -4,91 +4,93 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
-@Table(name="lancamentoordemservico")
+@Table(name = "lancamentoordemservico")
 public class LancamentoServicoTO {
 
 	@Id
-	@Column(name="idlancamento")
+	@Column(name = "idlancamento")
 	private String idLancamento;
-	@Column(name="nomefuncionario")
+	@Column(name = "nomefuncionario")
 	private String nomeFuncionario;
-	@Column(name="codfunc")
+	@Column(name = "codfunc")
 	private String codFunc;
-	@Column(name="nomecliente")
+	@Column(name = "nomecliente")
 	private String nomeCliente;
-	@Column(name="comanda")
+	@Column(name = "comanda")
 	private String comanda;
-	@Column(name="alicate")
+	@Column(name = "alicate")
 	private String alicate;
-	@Column(name="idtiposervico")
+	@Column(name = "idtiposervico")
 	private String idTipoServico;
-	@Column(name="valor")
+	@Column(name = "valor")
 	private String valor;
-	@Column(name="tipofuncionario")
+	@Column(name = "tipofuncionario")
 	private String tipoFuncionario;
-	@Column(name="datainclusao")
+	@Column(name = "datainclusao")
 	private String dataInclusao;
-	@Column(name="dataalteracao")
+	@Column(name = "dataalteracao")
 	private String dataAlteracao;
-	@Column(name="databaixa")
+	@Column(name = "databaixa")
 	private String dataBaixa;
-	@Column(name="manicurepreco")
+	@Column(name = "manicurepreco")
 	private String manicurePreco;
-	@Column(name="manicure")
+	@Column(name = "manicure")
 	private String manicure;
-	@Column(name="pedicure")
+	@Column(name = "pedicure")
 	private String pedicure;
-	@Column(name="francesinha")
+	@Column(name = "francesinha")
 	private String francesinha;
-	@Column(name="esmaltar")
+	@Column(name = "esmaltar")
 	private String esmaltar;
-	@Column(name="pernaint")
+	@Column(name = "pernaint")
 	private String pernaint;
-	@Column(name="perna12")
+	@Column(name = "perna12")
 	private String perna12;
-	@Column(name="virilha")
+	@Column(name = "virilha")
 	private String virilha;
-	@Column(name="intima")
+	@Column(name = "intima")
 	private String intima;
-	@Column(name="axila")
+	@Column(name = "axila")
 	private String axila;
-	@Column(name="sobrancelha")
+	@Column(name = "sobrancelha")
 	private String sobrancelha;
-	@Column(name="buco")
+	@Column(name = "buco")
 	private String buco;
-	@Column(name="pedicurePreco")
+	@Column(name = "pedicurePreco")
 	private String pedicurePreco;
-	@Column(name="francesinhaPreco")
+	@Column(name = "francesinhaPreco")
 	private String francesinhaPreco;
-	@Column(name="esmaltarpreco")
+	@Column(name = "esmaltarpreco")
 	private String esmaltarPreco;
-	@Column(name="pernaintpreco")
+	@Column(name = "pernaintpreco")
 	private String pernaintPreco;
-	@Column(name="perna12preco")
+	@Column(name = "perna12preco")
 	private String perna12Preco;
-	@Column(name="virilhapreco")
+	@Column(name = "virilhapreco")
 	private String virilhaPreco;
-	@Column(name="intimapreco")
+	@Column(name = "intimapreco")
 	private String intimaPreco;
-	@Column(name="axilapreco")
+	@Column(name = "axilapreco")
 	private String axilaPreco;
-	@Column(name="sobrancelhapreco")
+	@Column(name = "sobrancelhapreco")
 	private String sobrancelhaPreco;
-	@Column(name="bucopreco")
+	@Column(name = "bucopreco")
 	private String bucoPreco;
-	@Column(name="preco")
+	@Column(name = "preco")
 	private String preco;
-	@Column(name="formapagamento")
+	@Column(name = "formapagamento")
 	private String formaPagamento;
-	@Column(name="datapesquisainicio")
+
+	@Transient
 	private String dataPesquisaInicio;
-	@Column(name="datapesquisafim")
+	@Transient
 	private String dataPesquisaFim;
-	@Column(name="nomepesquisacliente")
+	@Transient
 	private String nomePesquisaCliente;
-	@Column(name="nomepesquisafuncionario")
+	@Transient
 	private String nomePesquisaFuncionario;
 
 	public String getDataPesquisaInicio() {

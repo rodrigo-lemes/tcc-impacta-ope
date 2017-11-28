@@ -12,7 +12,6 @@ import javax.persistence.Transient;
 @Table(name = "produto")
 public class ProdutoTO {
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idproduto")
@@ -23,9 +22,10 @@ public class ProdutoTO {
 	private String nomeProduto;
 	@Column(name = "marca")
 	private String marca;
-	/*
-	 * @Column(name="identificacaoproduto") private String identificacaoProduto;
-	 */
+
+	@Transient
+	private String identificacaoProduto;
+
 	@Column(name = "cor")
 	private String cor;
 	@Column(name = "quantidade")
@@ -34,13 +34,12 @@ public class ProdutoTO {
 	private String valor;
 	@Column(name = "codigoproduto")
 	private String codigoProduto;
-	/*@Column(name = "datainclusao")
-	private String dataInclusao;*/
-	/*@Column(name = "dataalteracao")
+	@Transient
+	private String dataInclusao;
+	@Transient
 	private String dataAlteracao;
-	@Column(name = "dataexclusao")
+	@Transient
 	private String dataExclusao;
-*/
 	@Transient
 	private String dataPesquisaInicio;
 	@Transient
@@ -90,12 +89,14 @@ public class ProdutoTO {
 		this.tipo = tipo;
 	}
 
-	/*
-	 * public String getIdentificacaoProduto() { return identificacaoProduto; }
-	 * 
-	 * public void setIdentificacaoProduto(String identificacaoProduto) {
-	 * this.identificacaoProduto = identificacaoProduto; }
-	 */
+	public String getIdentificacaoProduto() {
+		return identificacaoProduto;
+	}
+
+	public void setIdentificacaoProduto(String identificacaoProduto) {
+		this.identificacaoProduto = identificacaoProduto;
+	}
+
 	public String getCor() {
 		return cor;
 	}
@@ -120,15 +121,15 @@ public class ProdutoTO {
 		this.valor = valor;
 	}
 
-	/*public String getDataInclusao() {
+	public String getDataInclusao() {
 		return dataInclusao;
 	}
 
 	public void setDataInclusao(String dataInclusao) {
 		this.dataInclusao = dataInclusao;
-	}*/
+	}
 
-	/*public String getDataAlteracao() {
+	public String getDataAlteracao() {
 		return dataAlteracao;
 	}
 
@@ -142,7 +143,7 @@ public class ProdutoTO {
 
 	public void setDataExclusao(String dataExclusao) {
 		this.dataExclusao = dataExclusao;
-	}*/
+	}
 
 	public String getNomeProduto() {
 		return nomeProduto;
