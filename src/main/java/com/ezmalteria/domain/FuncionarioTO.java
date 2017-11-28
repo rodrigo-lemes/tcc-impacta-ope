@@ -122,7 +122,7 @@ public class FuncionarioTO {
 	}
 
 	public void setNascimento(Date nascimento) {
-		this.nascimento = nascimento;
+		this.nascimento = nascimento ;
 	}
 
 	public String getTelRes() {
